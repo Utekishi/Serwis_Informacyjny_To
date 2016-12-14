@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+ 
+
+<h:head>
+<meta charset="UTF-8" />
+<title>Serwis informacyjny</title>
+</h:head>
+<h:body>
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">            
+	 <h1>Witaj <h:outputText value="#{indexBean.imie}" />!</h1><br></br>
+	 <div class="login-card"><h3>Lorem ipsum1</h3>
+	 <h:graphicImage value="//resources/images/cat.jpg" style="width: 200; height: 200px; "/><br/>
+	 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...
+	 </div>
+	 
+	 <div class="login-card"><h3>Lorem ipsum2</h3>
+	 <h:graphicImage value="//resources/images/cat.jpg" style="width: 200; height: 200px; "/><br/>
+	 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...
+	 </div>
+	 
+	 <div class="login-card"><h3>Lorem ipsum3</h3>
+	 <h:graphicImage value="//resources/images/cat.jpg" style="width: 200; height: 200px; "/><br/>
+	 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...
+	 </div>
+   
+		
+        </ui:define>
+    </ui:composition>   
+
+</h:body>
+</html>
