@@ -36,7 +36,7 @@ public class ArtykulBean implements Serializable {
         	 artykul.setId(rs.getInt(1));
         	 artykul.setAutor(rs.getInt(2));
         	 artykul.setTytul(rs.getString(3));
-        	 artykul.setTresc(rs.getBlob(4));
+        	 artykul.setTresc(rs.getClob(4));
         	 artykul.setStatus(rs.getInt(5));
         	 artykul.setKategoria(rs.getInt(6));
         	 artykul.setObrazek(rs.getString(7));

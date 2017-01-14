@@ -1,6 +1,6 @@
 package org.pk.to.projekt.artykul;
 
-import java.sql.Blob;
+import java.sql.Clob;
 import java.sql.Date;
 
 
@@ -8,7 +8,7 @@ public class Artykul {
 		   int id;
 		   int autor;
 		   String tytul;
-		   Blob tresc;
+		   Clob tresc;
 		   int status;
 		   int kategoria;
 		   String obrazek;
@@ -32,10 +32,10 @@ public class Artykul {
 		public void setTytul(String tytul) {
 			this.tytul = tytul;
 		}
-		public Blob getTresc() {
+		public Clob getTresc() {
 			return tresc;
 		}
-		public void setTresc(Blob tresc) {
+		public void setTresc(Clob tresc) {
 			this.tresc = tresc;
 		}
 		public int getStatus() {

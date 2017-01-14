@@ -23,19 +23,19 @@
     			   rowClasses="authorTableOddRow,authorTableEvenRow">
     			   
        <h:column><f:facet name="header">ID</f:facet>
-         #{artykuly.id}
+  <h:outputText value=" #{artykuly.id}" />
        </h:column>
       <h:column><f:facet name="header">Tytul</f:facet>
-         #{artykuly.tytul}
+      <h:outputText value="#{artykuly.tytul}" />
       </h:column>
      <h:column><f:facet name="header">Tresc</f:facet>
-         #{artykuly.tresc}
+    <h:outputText value="#{artykuly.tresc}"  escape="false"/>
       </h:column>
       <h:column><f:facet name="header">Status</f:facet>
-         #{artykuly.status}
+    <h:outputText value="#{artykuly.status}" />
       </h:column>
       <h:column><f:facet name="header">Data publikacji</f:facet>
-         #{artykuly.dataPublikacji}
+   <h:outputText value="#{artykuly.dataPublikacji}" />
       </h:column>
     </h:dataTable>
 	<br />
@@ -47,13 +47,16 @@
             <br/>
             <h:outputText value="#{artykuly.tresc}" />
             <br/>
+            <h:outputText value="#{artykuly.tresc}"  escape="false"/>
+             <br/>
             <h:outputText value="#{artykuly.status}" />
             <br/>
             <h:outputText value="#{artykuly.dataPublikacji}" />
         </ui:repeat>   
 
-        </ui:define>
+     
+  
+   </ui:define>
     </ui:composition>   
-
 </h:body>
 </html>
