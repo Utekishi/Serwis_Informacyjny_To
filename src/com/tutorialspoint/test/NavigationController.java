@@ -23,6 +23,9 @@ public class NavigationController implements Serializable {
 		      return "testTechnologiczny";
 	   }
    
+   public String processArtykul(){
+	      return "testTechnologiczny";
+   }
    public String moveToLogowanie(){
 	      return "logowanie";
 	   }

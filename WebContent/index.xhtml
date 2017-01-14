@@ -45,6 +45,10 @@
             <br/>
             <h:outputText value="#{artykuly.tytul}" />
             <br/>
+                <h:form>
+                    <h:commandLink action="#{navigationController.processArtykul}" value="#{artykuly.tytul}" />
+                 </h:form>
+            <br/>
             <h:outputText value="#{artykuly.tresc}" />
             <br/>
             <h:outputText value="#{artykuly.tresc}"  escape="false"/>

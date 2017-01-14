@@ -13,16 +13,34 @@
 <h:body>
     <ui:composition template="/templates/default/main.xhtml">
         <ui:define name="content">            
-		
-		
-	<my:odczytajDane />
+<h:form>
 
-	
+
+	 	<h:panelGrid columns="3" border="0" >
+		    <h:panelGroup>	
+		    	<h:outputText value="Podaj Login: " />
+		    </h:panelGroup>
+		    <h:panelGroup>
+			    <h:inputText value="#{uzytkownikController.uzytkownikZFormLogowania.login}" id="login" required="true"  requiredMessage="Podanie loginu jest niezbędne" />
+			</h:panelGroup>
+		 	<h:panelGroup>	
+		    		<h:message id="m1" for="login" style="color:red"/>
+		    </h:panelGroup>
+		    
+		    <h:panelGroup>
+				<h:outputText  value="Podaj Hasło: "  />
+		    </h:panelGroup>
+		    <h:panelGroup>
+		  	  <h:inputSecret value="#{uzytkownikController.uzytkownikZFormLogowania.haslo}" id="haslo" required="true" requiredMessage="Podanie hasła jest niezbędne" />
+		    </h:panelGroup>
+		    <h:panelGroup>	
+		    		<h:message id="m2" for="haslo" style="color:red"/>
+		    </h:panelGroup>
+		</h:panelGrid>
+		<h:commandButton action="odczytaneDane" value="Wyślij" ></h:commandButton><br/>
 			
-					      <h:form>
-         <h:commandButton action="home?faces-redirect=true"
-            value="Back To Home Page" />
-      </h:form>
+		
+			</h:form>
         </ui:define>
         
     </ui:composition>   
