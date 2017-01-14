@@ -22,7 +22,6 @@ public class UserData implements Serializable {
    public List<Author> getAuthors(){
       ResultSet rs = null;
       PreparedStatement pst = null;
-      System.err.println("Err Get Authors");
       Connection con = getConnection();
       String stm = "Select * from authors";
       List<Author> records = new ArrayList<Author>();

@@ -5,4 +5,24 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 
+<navigation-rule>
+   <from-view-id>home.xhtml</from-view-id>
+   <navigation-case>
+      <from-action>#{navigationController.processPage1}</from-action>
+      <from-outcome>home</from-outcome>
+      <to-view-id>home.xhtml</to-view-id>
+   </navigation-case>
+   <navigation-case>
+      <from-action>#{navigationController.processLogowanie}</from-action>
+      <from-outcome>logowanie</from-outcome>
+      <to-view-id>logowanie.xhtml</to-view-id>
+   </navigation-case>
+   <navigation-case>
+      <from-action>#{navigationController.processTestTechnologiczny}</from-action>
+      <from-outcome>testTechnologiczny</from-outcome>
+      <to-view-id>testTechnologiczny.xhtml</to-view-id>
+   </navigation-case>
+</navigation-rule>
 </faces-config>
+
+

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:f="http://java.sun.com/jsf/core"    
+   xmlns:h="http://java.sun.com/jsf/html">
+   <h:head>
+      <title>JSF Tutorial!</title>
+      <h:outputStylesheet library="css" name="styles.css"  /> 
+   </h:head>
+   <h:body>
+   <h2>JDBC Integration Example</h2>
+   <h:dataTable value="#{userData.authors}" var="c"
+      styleClass="authorTable"
+      headerClass="authorTableHeader"
+      rowClasses="authorTableOddRow,authorTableEvenRow">
+      <h:column><f:facet name="header">Author ID</f:facet>
+         #{c.id}
+      </h:column>
+      <h:column><f:facet name="header">Name</f:facet>
+         #{c.name}
+      </h:column>
+   </h:dataTable>
+   
+
+      <h2>Implicit Navigation</h2>
+      <hr />
+      <h:form>
+         <h3>Using Managed Bean</h3>
+         <h:commandButton action="#{navigationController.moveToLogowanie}"
+            value="Logowanie" />
+         <h3>Using JSF outcome</h3>
+         <h:commandButton action="page2" value="Page2" />
+      </h:form>
+      <h:form>
+         <h:commandButton action="logowanie?faces-redirect=true"
+            value="SZZalguj" />
+      </h:form>
+      <br/>
+      <h2>Conditional Navigation</h2>
+      <hr />
+      <h:form>
+         <h:commandLink action="#{navigationController.showPage}"
+            value="Page1">
+            <f:param name="pageId" value="1" />
+         </h:commandLink>
+              
+         <h:commandLink action="#{navigationController.showPage}"
+            value="Page2">
+            <f:param name="pageId" value="2" />
+         </h:commandLink>
+              
+         <h:commandLink action="#{navigationController.showPage}"
+            value="Home">
+            <f:param name="pageId" value="3" />
+         </h:commandLink>
+      </h:form>
+      <br/>
+      <h2>"From Action" Navigation</h2>
+      <hr />
+      <h:form>
+         <h:commandLink action="#{navigationController.processPage1}"
+         value="Page1" />
+              
+         <h:commandLink action="#{navigationController.processPage2}"
+         value="Page2" />
+              
+      </h:form>
+      <br/>
+      <h2>Forward vs Redirection Navigation</h2>
+      <hr />
+      <h:form>
+         <h3>Forward</h3>
+         <h:commandButton action="page1" value="Page1" />
+         <h3>Redirect</h3>
+         <h:commandButton action="page1?faces-redirect=true"
+         value="Page1" />
+         <h3>Forward Logowanie</h3>
+         <h:commandButton action="logowanie?faces-redirect=true" />
+          <h:commandLink action="#{navigationController.processLogowanie}"
+         value="Page2" />
+      </h:form>
+   </h:body>
+</html> 
+
