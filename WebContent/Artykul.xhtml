@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -18,24 +19,29 @@
 
 				<div class="col-md-12">
 					<dl>
-						<ui:repeat value="#{artykulBean.artykuly}" var="artykuly">
-							<div class="asdasd">
-								<h:form>
-									<h:commandLink action="#{navigationController.processArtykul}"
-										value="${artykuly.tytul}" />
-								</h:form>
-								<br /> <img src="${artykuly.obrazek}" /> <br />
-								<dt>
-									<h:outputText value="${artykuly.autor}" />
-								</dt>
-								<br />
-								<h:outputText value="#{artykuly.tresc}" />
-							</div>
-						</ui:repeat>
+						<h3>
+							<h:outputText value="${artykuly.tytul}" />
+						</h3>
+						<br />
+						<img src="${artykuly.obrazek}" />
+						<br />
+						<dt>
+							<h:outputText value="${artykuly.autor}" />
+						</dt>
+						<br />
+						<h:outputText value="#{artykuly.tresc}" />
 					</dl>
-
 				</div>
+
+				<div class="komentarz">
+					<textarea rows="4" cols="50">
+At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+					</textarea>
+				</div>
+				<h:commandButton action="odczytaneDane" value="Wyślij"></h:commandButton>
+				<br />
 			</div>
+
 
 		</ui:define>
 	</ui:composition>

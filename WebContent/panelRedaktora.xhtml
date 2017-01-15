@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:my="http://xmlns.jcp.org/jsf/composite/mycomponents">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Serwis informacyjny</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/default/main.xhtml">
+		<ui:define name="content">
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Witaj, user!</h3>
+						<div class="asdasd">
+							<h4>Twoje dane personalne:</h4>
+							<div class="panel panel-default">
+								<div class="panel-footer">Imię:</div>
+								<div class="panel-footer">Nazwisko:</div>
+								<div class="panel-footer">Login:</div>
+							</div>
+
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+
+									<label for="inputEmail3" class="col-sm-2 control-label">
+										Nowe imię </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputEmail3" />
+									</div>
+								</div>
+								<div class="form-group">
+
+									<label for="inputPassword3" class="col-sm-2 control-label">
+										Nowe nazwisko </label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputPassword3" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">
+										Nowe hasło </label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control"
+											id="inputPassword3" />
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+
+										<button type="submit" class="btn btn-default">Zatwierdź
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<div class="asdasd">
+							<br>
+							<h4>Twoje artykuły:</h4>
+							</br>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Tytuł</th>
+										<th>Kategoria</th>
+										<th>Status</th>
+										<th>Data publikacji</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Tytuł1</td>
+										<td>Polityka</td>
+										<td>Opublikowany</td>
+										<td>01/04/2012</td>
+										<td><h:commandButton action="#" value="Edytuj"></h:commandButton></td>
+									</tr>
+									<tr class="active">
+										<td>2</td>
+										<td>Tytuł1</td>
+										<td>Polityka</td>
+										<td>Opublikowany</td>
+										<td>01/04/2012</td>
+										<td><h:commandButton action="#" value="Edytuj"></h:commandButton></td>
+									</tr>
+									<tr class="success">
+										<td>3</td>
+										<td>Tytuł1</td>
+										<td>Polityka</td>
+										<td>Opublikowany</td>
+										<td>01/04/2012</td>
+										<td><h:commandButton action="#" value="Edytuj"></h:commandButton></td>
+									</tr>
+									<tr class="warning">
+										<td>4</td>
+										<td>Tytuł1</td>
+										<td>Polityka</td>
+										<td>Opublikowany</td>
+										<td>01/04/2012</td>
+										<td><h:commandButton action="#" value="Edytuj"></h:commandButton></td>
+									</tr>
+									<tr class="danger">
+										<td>5</td>
+										<td>Tytuł1</td>
+										<td>Polityka</td>
+										<td>Opublikowany</td>
+										<td>01/04/2012</td>
+										<td><h:commandButton action="#" value="Edytuj"></h:commandButton></td>
+									</tr>
+								</tbody>
+							</table>
+							<br>
+							<td><h:commandButton action="#" value="Nowy artykuł"></h:commandButton></td>
+							</br>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

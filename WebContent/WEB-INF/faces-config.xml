@@ -27,6 +27,11 @@
       <from-outcome>testTechnologiczny</from-outcome>
       <to-view-id>testTechnologiczny.xhtml</to-view-id>
    </navigation-case>
+   <navigation-case>
+      <from-action>#{navigationController.processArtykul}</from-action>
+      <from-outcome>Artykul</from-outcome>
+      <to-view-id>Artykul.xhtml</to-view-id>
+   </navigation-case>
 </navigation-rule>
 </faces-config>
 

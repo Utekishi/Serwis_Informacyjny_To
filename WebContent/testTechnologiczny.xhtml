@@ -80,6 +80,48 @@
           <h:commandLink action="#{navigationController.processLogowanie}"
          value="Page2" />
       </h:form>
+      
+        <h:dataTable value="#{artykulBean.artykuly}" var="artykuly"
+ 				   styleClass="authorTable"
+     			   headerClass="authorTableHeader"
+    			   rowClasses="authorTableOddRow,authorTableEvenRow">
+    			   
+       <h:column><f:facet name="header">ID</f:facet>
+  <h:outputText value=" #{artykuly.id}" />
+       </h:column>
+      <h:column><f:facet name="header">Tytul</f:facet>
+      <h:outputText value="#{artykuly.tytul}" />
+      </h:column>
+     <h:column><f:facet name="header">Tresc</f:facet>
+    <h:outputText value="#{artykuly.tresc}"  escape="false"/>
+      </h:column>
+      <h:column><f:facet name="header">Status</f:facet>
+    <h:outputText value="#{artykuly.status}" />
+      </h:column>
+      <h:column><f:facet name="header">Data publikacji</f:facet>
+   <h:outputText value="#{artykuly.dataPublikacji}" />
+      </h:column>
+    </h:dataTable>
+	<br />
+	 <h:outputText value="Drugi sposob" />
+	  <ui:repeat value="#{artykulBean.artykuly}" var="artykuly">
+            <h:outputText value=" #{artykuly.id}" />
+            <br/>
+            <h:outputText value="#{artykuly.tytul}" />
+            <br/>
+                <h:form>
+                    <h:commandLink action="#{navigationController.processArtykul}" value="#{artykuly.tytul}" />
+                 </h:form>
+            <br/>
+            <h:outputText value="#{artykuly.tresc}" />
+            <br/>
+            <h:outputText value="#{artykuly.tresc}"  escape="false"/>
+             <br/>
+            <h:outputText value="#{artykuly.status}" />
+            <br/>
+            <h:outputText value="#{artykuly.dataPublikacji}" />
+        </ui:repeat>   
+        
    </h:body>
 </html> 
 

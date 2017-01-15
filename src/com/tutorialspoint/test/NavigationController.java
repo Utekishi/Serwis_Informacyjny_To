@@ -27,13 +27,16 @@ public class NavigationController implements Serializable {
 	      return "rejestracja";
 	   }
 
+	   public String moveToArtykul(){
+	      return "Artykul";
+	   }
+   public String processArtykul(){
+	      return "Artykul";
+   }
 public String processTestTechnologiczny(){
 		      return "testTechnologiczny";
 	   }
 
-   public String processArtykul(){
-	      return "testTechnologiczny";
-   }
    public String moveToLogowanie(){
 	      return "logowanie";
 	   }
