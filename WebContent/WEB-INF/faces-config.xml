@@ -6,31 +6,41 @@
     version="2.2">
 
 <navigation-rule>
-   <from-view-id>home.xhtml</from-view-id>
+   <from-view-id>/index.xhtml</from-view-id>
    <navigation-case>
-      <from-action>#{navigationController.processPage1}</from-action>
-      <from-outcome>home</from-outcome>
-      <to-view-id>home.xhtml</to-view-id>
+      <from-action>#{nawigacjaController.processIndex}</from-action>
+      <from-outcome>index</from-outcome>
+      <to-view-id>/index.xhtml</to-view-id>
    </navigation-case>
    <navigation-case>
-      <from-action>#{navigationController.processLogowanie}</from-action>
+      <from-action>#{nawigacjaController.processLogowanie}</from-action>
       <from-outcome>logowanie</from-outcome>
-      <to-view-id>logowanie.xhtml</to-view-id>
+      <to-view-id>/logowanie.xhtml</to-view-id>
    </navigation-case>
       <navigation-case>
-      <from-action>#{navigationController.processRejestracja}</from-action>
+      <from-action>#{nawigacjaController.processRejestracja}</from-action>
       <from-outcome>rejestracja</from-outcome>
-      <to-view-id>rejestracja.xhtml</to-view-id>
+      <to-view-id>/rejestracja.xhtml</to-view-id>
    </navigation-case>
    <navigation-case>
-      <from-action>#{navigationController.processTestTechnologiczny}</from-action>
+      <from-action>#{nawigacjaController.processTestTechnologiczny}</from-action>
       <from-outcome>testTechnologiczny</from-outcome>
-      <to-view-id>testTechnologiczny.xhtml</to-view-id>
+      <to-view-id>/testTechnologiczny.xhtml</to-view-id>
    </navigation-case>
    <navigation-case>
-      <from-action>#{navigationController.processArtykul}</from-action>
-      <from-outcome>Artykul</from-outcome>
-      <to-view-id>Artykul.xhtml</to-view-id>
+      <from-action>#{nawigacjaController.processArtykul}</from-action>
+      <from-outcome>artykul</from-outcome>
+      <to-view-id>/artykul.xhtml</to-view-id>
+   </navigation-case>
+      <navigation-case>
+      <from-action>#{nawigacjaController.moveToPanel}</from-action>
+      <from-outcome>panel</from-outcome>
+      <to-view-id>/panel.xhtml</to-view-id>
+   </navigation-case>
+      <navigation-case>
+      <from-action>#{nawigacjaController.moveToEdycjaArtykulu}</from-action>
+      <from-outcome>edycjaArtykulu</from-outcome>
+      <to-view-id>/edycjaArtykulu.xhtml</to-view-id>
    </navigation-case>
 </navigation-rule>
 </faces-config>

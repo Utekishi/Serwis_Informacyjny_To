@@ -14,19 +14,18 @@
 <h:body>
 	<ui:composition template="/templates/default/main.xhtml">
 		<ui:define name="content">
-
+		#{artykulBean.pobierzArtykul} 
 			<div class="container-fluid">
-
 				<div class="col-md-12">
 					<dl>
 						<h3>
-							<h:outputText value="#{artykuly.tytul}" />
+							<h:outputText value="#{artykulBean.wybranyArtykul.tytul}" />
 						</h3>
 						<br />
-						<img src="#{artykuly.obrazek}" />
+						<img src="#{artykulBean.wybranyArtykul.obrazek}" />
 						<dt>
 							Autor:
-							<h:outputText value="${artykuly.autor}" />
+							<h:outputText value="${artykulBean.wybranyArtykul.autor}" />
 						</dt>
 
 
@@ -34,7 +33,8 @@
 							Data publikacji:
 							<h:outputText value="${artykuly.dataPublikacji}" />
 						</dt>
-						<h:outputText value="#{artykuly.tresc}" />
+						<h:outputText value="#{artykulBean.wybranyArtykul.tresc}"
+							escape="false" />
 					</dl>
 				</div>
 				<table class="table">
@@ -48,8 +48,9 @@
 					<ui:repeat value="#{komentarzBean.komentarze}" var="komentarze">
 						<tbody>
 							<tr class="active">
-								<td><h:outputText value="${komentarze.tresc}" /></td>
-								<td><h:outputText value="${komentarze.autor}" /></td>
+								<td><h:outputText value="${komentarze.tresc}"
+										escape="false" /></td>
+								<td><h:outputText value="${komentarze.autorId}" /></td>
 								<td><h:outputText value="${komentarze.dataUtworzenia}" /></td>
 							</tr>
 						</tbody>

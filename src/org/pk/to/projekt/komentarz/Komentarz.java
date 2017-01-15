@@ -6,15 +6,8 @@ import java.sql.Date;
 public class Komentarz {
 	int id;
 	Clob tresc;
-	int autor;
-
-	public int getAutor() {
-		return autor;
-	}
-
-	public void setAutor(int autor) {
-		this.autor = autor;
-	}
+	int autorId;
+	int artykulId;
 
 	Date dataUtworzenia;
 
@@ -40,6 +33,22 @@ public class Komentarz {
 
 	public void setDataUtworzenia(Date dataUtworzenia) {
 		this.dataUtworzenia = dataUtworzenia;
+	}
+
+	public int getAutorId() {
+		return autorId;
+	}
+
+	public void setAutorId(int autorId) {
+		this.autorId = autorId;
+	}
+
+	public int getArtykulId() {
+		return artykulId;
+	}
+
+	public void setArtykulId(int artykulId) {
+		this.artykulId = artykulId;
 	}
 
 }

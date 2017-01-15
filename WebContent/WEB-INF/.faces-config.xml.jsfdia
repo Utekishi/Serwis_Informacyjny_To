@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#index.xhtml:0" NAME="item"
+   PATH="/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="index:#{nawigacjaController.processIndex}:#index.xhtml"
+    NAME="output" PATH="/index.xhtml" TARGET="rules:#index.xhtml"
+    TITLE="#{nawigacjaController.processIndex}:index" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="logowanie:#{nawigacjaController.processLogowanie}:#logowanie.xhtml"
+    NAME="output1" PATH="/logowanie.xhtml"
+    TARGET="rules:#logowanie.xhtml"
+    TITLE="#{nawigacjaController.processLogowanie}:logowanie" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="rejestracja:#{nawigacjaController.processRejestracja}:#rejestracja.xhtml"
+    NAME="output2" PATH="/rejestracja.xhtml"
+    TARGET="rules:#rejestracja.xhtml"
+    TITLE="#{nawigacjaController.processRejestracja}:rejestracja" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="testTechnologiczny:#{nawigacjaController.processTestTechnologiczny}:#testTechnologiczny.xhtml"
+    NAME="output3" PATH="/testTechnologiczny.xhtml"
+    TARGET="rules:#testTechnologiczny.xhtml"
+    TITLE="#{nawigacjaController.processTestTechnologiczny}:testTechnologiczny" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="artykul:#{nawigacjaController.processArtykul}:#artykul.xhtml"
+    NAME="output4" PATH="/artykul.xhtml" TARGET="rules:#artykul.xhtml"
+    TITLE="#{nawigacjaController.processArtykul}:artykul" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="panel:#{nawigacjaController.moveToPanel}:#panel.xhtml"
+    NAME="output5" PATH="/panel.xhtml" TARGET="rules:#panel.xhtml"
+    TITLE="#{nawigacjaController.moveToPanel}:panel" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="edycjaArtykulu:#{nawigacjaController.moveToEdycjaArtykulu}:#edycjaArtykulu.xhtml"
+    NAME="output6" PATH="/edycjaArtykulu.xhtml"
+    TARGET="rules:#edycjaArtykulu.xhtml"
+    TITLE="#{nawigacjaController.moveToEdycjaArtykulu}:edycjaArtykulu" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#logowanie.xhtml" PATH="/logowanie.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#testTechnologiczny.xhtml"
+  PATH="/testTechnologiczny.xhtml" SHAPE="304,385,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#artykul.xhtml" PATH="/artykul.xhtml"
+  SHAPE="304,497,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#rejestracja.xhtml" PATH="/rejestracja.xhtml"
+  SHAPE="304,273,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#panel.xhtml" PATH="/panel.xhtml"
+  SHAPE="304,337,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#edycjaArtykulu.xhtml"
+  PATH="/edycjaArtykulu.xhtml" SHAPE="304,785,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>
