@@ -11,123 +11,73 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class NawigacjaController implements Serializable {
 
-   private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-   //Zmienne przekazywane z frontu
-   @ManagedProperty(value="#{param.pageId}")
-   private String pageId;
-   
-   @ManagedProperty(value="#{param.artykulId}")
-   private int artykulId;
+	// Zmienne przekazywane z frontu
+	@ManagedProperty(value = "#{param.pageId}")
+	private String pageId;
 
+	@ManagedProperty(value = "#{param.artykulId}")
+	private int artykulId;
 
+	// Nawigacja po stronie
 
-   //Nawigacja po stronie
-   
-   public String processRejestracja(){
-		      return "rejestracja";
-	   }
-   
-   public String moveToRejestracja(){
-	      return "rejestracja";
-	   }
-   
-   public String processIndex(){
-	      return "index";
-}
+	public String processRejestracja() {
+		return "rejestracja";
+	}
 
-public String moveToIndex(){
-   return "index";
-}
+	public String moveToRejestracja() {
+		return "rejestracja";
+	}
 
-	   public String moveToArtykul(){
-	      return "artykul";
-	   }
-	   
-   public String processArtykul(){
-	   
-	   FacesContext context = FacesContext.getCurrentInstance();
-	   context.getExternalContext().getSessionMap().put("wybranyArtykulId", artykulId);
-	   return "artykul";
-   }
+	public String processIndex() {
+		return "index";
+	}
 
+	public String moveToIndex() {
+		return "index";
+	}
 
-   public String moveToLogowanie(){
-	      return "logowanie";
-	   }
+	public String moveToArtykul() {
+		return "artykul";
+	}
 
-   public String processLogowanie(){
-		      return "logowanie";
-	   }
-   
-   public String processWylogowanie(){
-	   FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-	   return "/home.xhtml?faces-redirect=true";
-}
-   
+	public String processArtykul() {
 
-	   
-   
-   //Niewa¿ne bo testowe
-   
-   
-   public String moveToPage1(){
-      return "page1";
-   }
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getSessionMap().put("wybranyArtykulId", artykulId);
+		return "artykul";
+	}
 
-   public String moveToPage2(){
-      return "page2";
-   }
+	public String moveToLogowanie() {
+		return "logowanie";
+	}
 
-   public String moveToHomePage(){
-      return "home";
-   }
+	public String processLogowanie() {
+		return "logowanie";
+	}
 
-   public String processPage1(){
-      return "page";
-   }
+	public String processWylogowanie() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/home.xhtml?faces-redirect=true";
+	}
 
-   public String processPage2(){
-      return "page";
-   }
-   
-   public String processTestTechnologiczny(){
-	      return "testTechnologiczny";
-}
+	//Geters/Seters
+	public String getPageId() {
+		return pageId;
+	}
 
-   public String showPage(){
-      if(pageId == null){
-         return "home";
-      }
-      if(pageId.equals("1")){
-         return "page1";
-      }else if(pageId.equals("2")){
-         return "page2";
-      }else{
-         return "home";
-      }
-   }
-   
-   public String moveToTestTechnologicznye(){
-	      return "testTechnologiczny";
-	   }
+	public void setPageId(String pageId) {
+		this.pageId = pageId;
+	}
 
-   //Geters Setters
-   public String getPageId() {
-      return pageId;
-   }
+	public int getArtykulId() {
+		return artykulId;
+	}
 
-   public void setPageId(String pageId) {
-      this.pageId = pageId;
-   }
-   
-   public int getArtykulId() {
-	return artykulId;
-   }
+	public void setArtykulId(int artykulId) {
+		this.artykulId = artykulId;
+	}
 
-   public void setArtykulId(int artykulId) {
-	this.artykulId = artykulId;
-   }
-
-   
+	
 }

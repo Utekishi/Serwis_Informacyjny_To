@@ -8,7 +8,7 @@ public class Komentarz {
 	Clob tresc;
 	int autorId;
 	int artykulId;
-	
+
 	Date dataUtworzenia;
 
 	public int getId() {
@@ -50,7 +50,5 @@ public class Komentarz {
 	public void setArtykulId(int artykulId) {
 		this.artykulId = artykulId;
 	}
-	
-	
 
 }
