@@ -6,11 +6,11 @@
     version="2.2">
 
 <navigation-rule>
-   <from-view-id>home.xhtml</from-view-id>
+   <from-view-id>index.xhtml</from-view-id>
    <navigation-case>
-      <from-action>#{navigationController.processPage1}</from-action>
-      <from-outcome>home</from-outcome>
-      <to-view-id>home.xhtml</to-view-id>
+      <from-action>#{navigationController.processIndex}</from-action>
+      <from-outcome>index</from-outcome>
+      <to-view-id>index.xhtml</to-view-id>
    </navigation-case>
    <navigation-case>
       <from-action>#{navigationController.processLogowanie}</from-action>
@@ -29,8 +29,8 @@
    </navigation-case>
    <navigation-case>
       <from-action>#{navigationController.processArtykul}</from-action>
-      <from-outcome>Artykul</from-outcome>
-      <to-view-id>Artykul.xhtml</to-view-id>
+      <from-outcome>artykul</from-outcome>
+      <to-view-id>artykul.xhtml</to-view-id>
    </navigation-case>
 </navigation-rule>
 </faces-config>

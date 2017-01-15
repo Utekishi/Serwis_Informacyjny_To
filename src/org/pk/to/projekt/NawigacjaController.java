@@ -1,24 +1,29 @@
-package com.tutorialspoint.test;
+package org.pk.to.projekt;
 
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
-@ManagedBean(name = "navigationController", eager = true)
+@ManagedBean(name = "nawigacjaController", eager = true)
 @RequestScoped
-public class NavigationController implements Serializable {
+public class NawigacjaController implements Serializable {
 
    private static final long serialVersionUID = 1L;
 
+   //Zmienne przekazywane z frontu
    @ManagedProperty(value="#{param.pageId}")
    private String pageId;
+   
+   @ManagedProperty(value="#{param.artykulId}")
+   private int artykulId;
 
-   public String moveToTestTechnologicznye(){
-	      return "testTechnologiczny";
-	   }
 
+
+   //Nawigacja po stronie
+   
    public String processRejestracja(){
 		      return "rejestracja";
 	   }
@@ -26,16 +31,26 @@ public class NavigationController implements Serializable {
    public String moveToRejestracja(){
 	      return "rejestracja";
 	   }
+   
+   public String processIndex(){
+	      return "index";
+}
+
+public String moveToIndex(){
+   return "index";
+}
 
 	   public String moveToArtykul(){
-	      return "Artykul";
+	      return "artykul";
 	   }
+	   
    public String processArtykul(){
-	      return "Artykul";
+	   
+	   FacesContext context = FacesContext.getCurrentInstance();
+	   context.getExternalContext().getSessionMap().put("wybranyArtykulId", artykulId);
+	   return "artykul";
    }
-public String processTestTechnologiczny(){
-		      return "testTechnologiczny";
-	   }
+
 
    public String moveToLogowanie(){
 	      return "logowanie";
@@ -45,6 +60,10 @@ public String processTestTechnologiczny(){
 		      return "logowanie";
 	   }
 	   
+   
+   //Niewa¿ne bo testowe
+   
+   
    public String moveToPage1(){
       return "page1";
    }
@@ -64,6 +83,10 @@ public String processTestTechnologiczny(){
    public String processPage2(){
       return "page";
    }
+   
+   public String processTestTechnologiczny(){
+	      return "testTechnologiczny";
+}
 
    public String showPage(){
       if(pageId == null){
@@ -77,7 +100,12 @@ public String processTestTechnologiczny(){
          return "home";
       }
    }
+   
+   public String moveToTestTechnologicznye(){
+	      return "testTechnologiczny";
+	   }
 
+   //Geters Setters
    public String getPageId() {
       return pageId;
    }
@@ -85,4 +113,14 @@ public String processTestTechnologiczny(){
    public void setPageId(String pageId) {
       this.pageId = pageId;
    }
+   
+   public int getArtykulId() {
+	return artykulId;
+   }
+
+   public void setArtykulId(int artykulId) {
+	this.artykulId = artykulId;
+   }
+
+   
 }

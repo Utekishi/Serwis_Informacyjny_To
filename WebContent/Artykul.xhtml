@@ -16,30 +16,23 @@
 		<ui:define name="content">
 
 			<div class="container-fluid">
-
+			#{artykulBean.pobierzArtykul}
 				<div class="col-md-12">
 					<dl>
 						<h3>
-							<h:outputText value="${artykuly.tytul}" />
+							<h:outputText value="#{artykulBean.wybranyArtykul.tytul}" />
 						</h3>
 						<br />
-						<img src="${artykuly.obrazek}" />
+						<img src="#{artykulBean.wybranyArtykul.obrazek}" />
 						<br />
 						<dt>
-							<h:outputText value="${artykuly.autor}" />
+							<h:outputText value="#{artykulBean.wybranyArtykul.autor}" />
 						</dt>
 						<br />
-						<h:outputText value="#{artykuly.tresc}" />
+						<h:outputText value="#{artykulBean.wybranyArtykul.tresc}" />
 					</dl>
 				</div>
 
-				<div class="komentarz">
-					<textarea rows="4" cols="50">
-At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-					</textarea>
-				</div>
-				<h:commandButton action="odczytaneDane" value="Wyślij"></h:commandButton>
-				<br />
 			</div>
 
 

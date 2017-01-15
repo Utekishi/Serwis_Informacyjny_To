@@ -1,4 +1,4 @@
-package org.pk.to.projekt;
+package com.tutorialspoint.test;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;

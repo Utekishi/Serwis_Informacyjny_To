@@ -21,15 +21,18 @@
 						<ui:repeat value="#{artykulBean.artykuly}" var="artykuly">
 							<div class="asdasd">
 								<h:form>
-									<h:commandLink action="#{navigationController.processArtykul}"
-										value="${artykuly.tytul}" />
+									<h:commandLink action="#{nawigacjaController.processArtykul}"
+										value="#{artykuly.tytul}"> 
+										<f:param name="artykulId" value="${artykuly.id}" />
+         							</h:commandLink>
 								</h:form>
-								<br /> <img src="${artykuly.obrazek}" /> <br />
+								<br /> <img src="#{artykuly.obrazek}" /> <br />
 								<dt>
-									<h:outputText value="${artykuly.autor}" />
+									<h:outputText value="#{artykuly.autor}" />
 								</dt>
 								<br />
 								<h:outputText value="#{artykuly.tresc}" />
+          
 							</div>
 						</ui:repeat>
 					</dl>

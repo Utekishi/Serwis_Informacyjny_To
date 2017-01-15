@@ -1,17 +1,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"  >
  
     <ui:composition>
- 
+   <h:form>
         <ul class="nav nav-sidebar">
-            <li class="active"><a href="#" >Strona główna</a></li>
+            <li class="active"><h:commandLink action="#{nawigacjaController.processIndex}" value="Strona główna" /></li>
             <li><a href="#">Wiadomości</a></li>
             <li><a href="#">Polityka</a></li>
             <li><a href="#">Sport</a></li>
-            <li><a href="#">Film</a></li>
-            <li><a href="#">Muzyka</a></li>
-            <br></br>
-            <li><img src="http://lorempixel.com/225/225/"></img></li>
+      		<li><h:commandLink action="#{nawigacjaController.processRejestracja}" value="Rejestracja" /></li>
+            <li><h:commandLink action="#{nawigacjaController.processLogowanie}" value="Logowanie"  /></li>
+            <br/>
+          
         </ul>
+    </h:form>
     </ui:composition>
+<script>
+function klikniecie(){
+	  console.log("klikniecie:"+this.firstChild" c: "+this.firstChild.getAttribute("class"));
+
+}
+
+</script> 
 </html>
+
