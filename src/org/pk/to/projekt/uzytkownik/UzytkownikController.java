@@ -21,6 +21,7 @@ public class UzytkownikController implements Serializable {
 
    public String informacjaNaglowek = "Brak sesji";
    public Uzytkownik uzytkownikZFormLogowania = new Uzytkownik();   
+   public Uzytkownik uzytkownikZFormRejestrowania = new Uzytkownik();   
    public UzytkownikController(){
 	   Uzytkownik uzytkownikSesji = new Uzytkownik();   
 	   FacesContext context = FacesContext.getCurrentInstance();
@@ -59,15 +60,15 @@ public String getZaloguj() {
 		System.err.println("Z bazy"+getUzytkownik(uzytkownikZFormLogowania.getLogin(),uzytkownikZFormLogowania.getHaslo()));
 		System.err.println("Z con"+context.getExternalContext().getSessionMap().get("uzytkownikSesji"));
 
-		
-
-		
 		return "Zalogowano";
 		}
 	return "Nie Zalogowano";
 	
 }
 
+public String getZarejestruj() {
+		return setUzytkownik(uzytkownikZFormRejestrowania);
+}
 
 public void setInformacjaNaglowek(String informacjaNaglowek) {
 	this.informacjaNaglowek = informacjaNaglowek;
@@ -132,5 +133,41 @@ private Uzytkownik getUzytkownik(String pLogin, String pHaslo){
        e.printStackTrace();
     }
     return null;
+ } 
+
+private String setUzytkownik(Uzytkownik pUzytkownik){
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    Connection con = UzytkownikBean.getConnection();
+    String stm = "INSERT INTO Uzytkownik Imie = ?, Nazwisko = ?,Login = ?, Haslo = ?,Typ_Konta = ?,Status_Konta = ?,Data_Utworzenia = ?";
+String wynik;
+    try {   
+        pst = con.prepareStatement(stm);
+        pst.setString(1,pUzytkownik.imie);
+        pst.setString(2,pUzytkownik.nazwisko);
+        pst.setString(3,pUzytkownik.login);
+        pst.setString(4,pUzytkownik.haslo);
+        pst.setInt(5,pUzytkownik.typKonta);
+        pst.setInt(6,pUzytkownik.statusKonta);
+        pst.setDate(7,pUzytkownik.dataUtworzenia);
+        pst.execute();
+    
+    } catch (SQLException e) {
+       e.printStackTrace();
+       wynik="Blad podczas dodawania do bazy danych";
+    }
+    wynik="Zarejestrowano poprwanie";
+    return wynik;
  }
+
+public Uzytkownik getUzytkownikZFormRejestrowania() {
+	return uzytkownikZFormRejestrowania;
+}
+
+public void setUzytkownikZFormRejestrowania(Uzytkownik uzytkownikZFormRejestrowania) {
+	this.uzytkownikZFormRejestrowania = uzytkownikZFormRejestrowania;
+}
+
+
+
 }

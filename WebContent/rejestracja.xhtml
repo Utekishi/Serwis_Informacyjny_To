@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+ 	  xmlns:my="http://xmlns.jcp.org/jsf/composite/mycomponents">
+
+<h:head>
+<meta charset="UTF-8" />
+<title>Serwis informacyjny</title>
+</h:head>
+<h:body>
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">            
+<h:form>
+
+
+	 	<h:panelGrid columns="3" border="0" >
+		    <h:panelGroup>	
+		    	<h:outputText value="Podaj Login: " />
+		    </h:panelGroup>
+		    <h:panelGroup>
+			    <h:inputText value="#{uzytkownikController.uzytkownikZFormRejestrowania.login}" id="login" required="true"  requiredMessage="Podanie loginu jest niezbędne" />
+			</h:panelGroup>
+		 	<h:panelGroup>	
+		    		<h:message id="m1" for="login" style="color:red"/>
+		    </h:panelGroup>
+		    
+		    <h:panelGroup>
+				<h:outputText  value="Podaj Hasło: "  />
+		    </h:panelGroup>
+		    <h:panelGroup>
+		  	  <h:inputSecret value="#{uzytkownikController.uzytkownikZFormRejestrowania.haslo}" id="haslo" required="true" requiredMessage="Podanie hasła jest niezbędne" />
+		    </h:panelGroup>
+		    <h:panelGroup>	
+		    		<h:message id="m2" for="haslo" style="color:red"/>
+		    </h:panelGroup>
+		</h:panelGrid>
+		<h:commandButton action="odczytaneDaneRejestracja" value="Wyślij" ></h:commandButton><br/>
+			
+		
+			</h:form>
+        </ui:define>
+        
+    </ui:composition>   
+
+</h:body>
+</html>

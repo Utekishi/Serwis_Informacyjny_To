@@ -17,6 +17,11 @@
       <from-outcome>logowanie</from-outcome>
       <to-view-id>logowanie.xhtml</to-view-id>
    </navigation-case>
+      <navigation-case>
+      <from-action>#{navigationController.processRejestracja}</from-action>
+      <from-outcome>rejestracja</from-outcome>
+      <to-view-id>rejestracja.xhtml</to-view-id>
+   </navigation-case>
    <navigation-case>
       <from-action>#{navigationController.processTestTechnologiczny}</from-action>
       <from-outcome>testTechnologiczny</from-outcome>

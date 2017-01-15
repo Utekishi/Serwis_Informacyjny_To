@@ -19,10 +19,18 @@ public class NavigationController implements Serializable {
 	      return "testTechnologiczny";
 	   }
 
-   public String processTestTechnologiczny(){
-		      return "testTechnologiczny";
+   public String processRejestracja(){
+		      return "rejestracja";
 	   }
    
+   public String moveToRejestracja(){
+	      return "rejestracja";
+	   }
+
+public String processTestTechnologiczny(){
+		      return "testTechnologiczny";
+	   }
+
    public String processArtykul(){
 	      return "testTechnologiczny";
    }
