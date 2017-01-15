@@ -93,7 +93,7 @@ public class ArtykulBean implements Serializable {
 
 	}
 
-	public Connection getConnection() {
+	public static Connection getConnection() {
 		Connection con = null;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");

@@ -30,6 +30,14 @@ public class NawigacjaController implements Serializable {
 		return "rejestracja";
 	}
 
+	public String processNowyArtykul() {
+		return "nowyArtykul";
+	}
+
+	public String moveToNowyArtykul() {
+		return "nowyArtykul";
+	}
+	
 	public String processIndex() {
 		return "index";
 	}
@@ -43,7 +51,6 @@ public class NawigacjaController implements Serializable {
 	}
 
 	public String processArtykul() {
-
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().put("wybranyArtykulId", artykulId);
 		return "artykul";

@@ -2,16 +2,18 @@ package org.pk.to.projekt.artykul;
 
 import java.sql.Clob;
 import java.sql.Date;
+import java.sql.SQLException;
 
 public class Artykul {
-	int id;
-	int autor;
-	String tytul;
-	Clob tresc;
-	int status;
-	int kategoria;
-	String obrazek;
-	Date dataPublikacji;
+	private int id;
+	private int autor;
+	private String tytul;
+	private Clob tresc;
+	private String trescJakoString= "";
+	private int status;
+	private int kategoria;
+	private String obrazek;
+	private Date dataPublikacji;
 
 	public int getId() {
 		return id;
@@ -44,9 +46,17 @@ public class Artykul {
 	public void setTresc(Clob tresc) {
 		this.tresc = tresc;
 	}
-
+	
 	public int getStatus() {
 		return status;
+	}
+
+	public String getTrescJakoString() {
+		return trescJakoString;
+	}
+
+	public void setTrescJakoString(String trescJakoString) {
+		this.trescJakoString = trescJakoString;
 	}
 
 	public void setStatus(int status) {

@@ -4,10 +4,10 @@ import java.sql.Clob;
 import java.sql.Date;
 
 public class Komentarz {
-	int id;
-	Clob tresc;
-	int autorId;
-	int artykulId;
+	private int id;
+	private Clob tresc;
+	private int autorId;
+	private int artykulId;
 
 	Date dataUtworzenia;
 

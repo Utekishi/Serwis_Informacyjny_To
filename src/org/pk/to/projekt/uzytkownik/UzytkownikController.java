@@ -29,22 +29,22 @@ public class UzytkownikController implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		if (!context.getExternalContext().getSessionMap().containsKey("uzytkownikSesji")) {
 
-			uzytkownikSesji.typKonta = 0;
+			uzytkownikSesji.setTypKonta(0);
 			context.getExternalContext().getSessionMap().put("uzytkownikSesji", uzytkownikSesji);
 			informacjaNaglowek = "Witaj, goœæ";
 		}
 		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
 
-		if (uzytkownikSesji.typKonta == 0) {
+		if (uzytkownikSesji.getTypKonta() == 0) {
 			informacjaNaglowek = "Witaj, goœæ";
-		} else if (uzytkownikSesji.typKonta == 1) {
-			informacjaNaglowek = "Witaj u¿ytkowniku, " + uzytkownikSesji.imie;
-		} else if (uzytkownikSesji.typKonta == 2) {
-			informacjaNaglowek = "Witaj moderatorze, " + uzytkownikSesji.imie;
-		} else if (uzytkownikSesji.typKonta == 3) {
-			informacjaNaglowek = "Witaj administratorze, <name>" + uzytkownikSesji.imie;
+		} else if (uzytkownikSesji.getTypKonta() == 1) {
+			informacjaNaglowek = "Witaj u¿ytkowniku, " + uzytkownikSesji.getImie();
+		} else if (uzytkownikSesji.getTypKonta() == 2) {
+			informacjaNaglowek = "Witaj moderatorze, " + uzytkownikSesji.getImie();
+		} else if (uzytkownikSesji.getTypKonta() == 3) {
+			informacjaNaglowek = "Witaj administratorze, <name>" + uzytkownikSesji.getImie();
 		}
-		poziomDostepu = uzytkownikSesji.typKonta;
+		poziomDostepu = uzytkownikSesji.getTypKonta();
 	}
 
 	public String getInformacjaNaglowek() {
@@ -144,10 +144,10 @@ public class UzytkownikController implements Serializable {
 	String wynik;
 	    try {   
 	        pst = con.prepareStatement(stm);
-	        pst.setString(1,pUzytkownik.imie);
-	        pst.setString(2,pUzytkownik.nazwisko);
-	        pst.setString(3,pUzytkownik.login);
-	        pst.setString(4,pUzytkownik.haslo);
+	        pst.setString(1,pUzytkownik.getImie());
+	        pst.setString(2,pUzytkownik.getNazwisko());
+	        pst.setString(3,pUzytkownik.getLogin());
+	        pst.setString(4,pUzytkownik.getHaslo());
 	        pst.execute();
 	    
 	    } catch (SQLException e) {
@@ -167,8 +167,7 @@ public class UzytkownikController implements Serializable {
 	}
 
 	public int getPoziomDostepu() {
-		System.err.println("poziomDostepu: " + poziomDostepu);
-		return poziomDostepu;
+			return poziomDostepu;
 
 	}
 
