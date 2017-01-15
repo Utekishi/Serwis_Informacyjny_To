@@ -9,19 +9,13 @@
             <li><a href="#">Wiadomości</a></li>
             <li><a href="#">Polityka</a></li>
             <li><a href="#">Sport</a></li>
-      		<li><h:commandLink action="#{nawigacjaController.processRejestracja}" value="Rejestracja" /></li>
+      		<li><h:commandLink action="#{nawigacjaController.processRejestracja}" value="Rejestracja"  /></li>
             <li><h:commandLink action="#{nawigacjaController.processLogowanie}" value="Logowanie"  /></li>
             <br/>
-          
+            <li><img src="http://lorempixel.com/225/225/"></img></li>
         </ul>
     </h:form>
+
     </ui:composition>
-<script>
-function klikniecie(){
-	  console.log("klikniecie:"+this.firstChild" c: "+this.firstChild.getAttribute("class"));
-
-}
-
-</script> 
 </html>
 

@@ -1,18 +1,41 @@
-
 create database IF NOT EXISTS serwis_informacyjny_to;
+
 use serwis_informacyjny_to;
-CREATE TABLE IF NOT EXISTS authors (
-    id int PRIMARY KEY, 
-    name VARCHAR(25)
+
+CREATE TABLE IF NOT EXISTS Uzytkownik ( 
+    Id int PRIMARY KEY, 
+    Imie VARCHAR(25) NOT NULL, 
+    Nazwisko VARCHAR(50) NOT NULL, 
+    Login VARCHAR(50) NOT NULL, 
+    Haslo VARCHAR(50) NOT NULL, 
+    Typ_Konta int NOT NULL, 
+    Status_Konta int NOT NULL, 
+    Data_Utworzenia Date NULL, 
+    Data_Zbanowania Date NULL
 );
 
-INSERT INTO authors(id, name) VALUES(1, 'Rob Bal');
-INSERT INTO authors(id, name) VALUES(2, 'John Carter');
-INSERT INTO authors(id, name) VALUES(3, 'Chris London');
-INSERT INTO authors(id, name) VALUES(4, 'Truman De Bal');
-INSERT INTO authors(id, name) VALUES(5, 'Emile Capote');
-INSERT INTO authors(id, name) VALUES(7, 'Breech Jabber');
-INSERT INTO authors(id, name) VALUES(8, 'Bob Carter');
-INSERT INTO authors(id, name) VALUES(9, 'Nelson Mand');
-INSERT INTO authors(id, name) VALUES(10, 'Tennant Mark');
+CREATE TABLE IF NOT EXISTS Artykul ( 
+    Id int PRIMARY KEY,
+    Autor int NOT NULL,
+    Tytul VARCHAR(25) NOT NULL, 
+    Tresc MEDIUMTEXT NOT NULL, 
+    Status_artykulu int NOT NULL, 
+    Kategoria int NOT NULL,
+    Obrazek VARCHAR(100) NULL,
+    Data_Publikacji Date NULL
+);
 
+CREATE TABLE IF NOT EXISTS Komentarze ( 
+    Id int PRIMARY KEY,
+    Tresc MEDIUMTEXT NOT NULL,
+    Autor int NOT NULL,
+    Data_Utworzenia Date NULL
+);
+
+
+INSERT INTO Uzytkownik(Id, Imie, Nazwisko, Login, Haslo, Typ_Konta, Status_Konta) VALUES(1, 'Jan', 'Kowalski', 'janek1', 'janek1', 1, 1);
+INSERT INTO Uzytkownik(Id, Imie, Nazwisko, Login, Haslo, Typ_Konta, Status_Konta) VALUES(2, 'Artur', 'Nowak', 'artur1', 'artur1', 1, 1);
+INSERT INTO Artykul(Id, Autor, Tytul, Tresc, Status_artykulu, Kategoria, Obrazek, Data_Publikacji) VALUES(1, 1, 'Tytul1', 'Tresc1', 0, 0, 'http://lorempixel.com/250/250/', NOW());
+INSERT INTO Artykul(Id, Autor, Tytul, Tresc, Status_artykulu, Kategoria, Obrazek, Data_Publikacji) VALUES(2, 2, 'Tytul2', 'Tresc2', 0, 0, 'http://lorempixel.com/250/250/', NOW());
+INSERT INTO Komentarze(Id,Tresc, Autor, Data_Utworzenia) VALUES(1,'TrescKomentarza1', 1, NOW());
+INSERT INTO Komentarze(Id,Tresc, Autor, Data_Utworzenia) VALUES(2,'TrescKomentarza2', 2, NOW());

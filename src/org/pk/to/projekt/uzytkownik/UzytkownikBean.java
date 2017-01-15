@@ -20,7 +20,7 @@ public class UzytkownikBean implements Serializable {
 
 
    
-   public List<Uzytkownik> getArtykuly(){
+   public List<Uzytkownik> getUzytkownicy(){
 	      ResultSet rs = null;
 	      PreparedStatement pst = null;
 	      Connection con = getConnection();
