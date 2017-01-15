@@ -1,50 +1,55 @@
 <html xmlns:h="http://java.sun.com/jsf/html"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:composite="http://java.sun.com/jsf/composite"
-      xmlns:f="http://java.sun.com/jsf/core"  >
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-		<link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'></link>
-		
-	  <composite:interface>
-		
-	  </composite:interface>
+<link rel='stylesheet prefetch'
+	href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'></link>
 
-	  <composite:implementation>
-	    <div class="login-card">
-   	 		<h1>Logowanie</h1><br></br>
-	<h:form>
+<composite:interface>
+
+</composite:interface>
+
+<composite:implementation>
+	<div class="login-card">
+		<h1>Logowanie</h1>
+		<br></br>
+		<h:form>
 
 
-	 	<h:panelGrid columns="3" border="0" >
-		    <h:panelGroup>	
-		    	<h:outputText value="Podaj Login: " />
-		    </h:panelGroup>
-		    <h:panelGroup>
-			    <h:inputText value="#{indexBean.imie}" id="imie" required="true"  requiredMessage="Podanie loginu jest niezbędne" >
-	
-				</h:inputText>
-			</h:panelGroup>
-		 	<h:panelGroup>	
-		    		<h:message id="m1" for="imie" style="color:red"/>
-		    </h:panelGroup>
-		    
-		    <h:panelGroup>
-				<h:outputText  value="Podaj Hasło: "  />
-		    </h:panelGroup>
-		    <h:panelGroup>
-		  	  <h:inputSecret value="#{indexBean.nazwisko}" id="nazwisko" required="true" requiredMessage="Podanie hasła jest niezbędne">
-		      </h:inputSecret>
-		    </h:panelGroup>
-		    <h:panelGroup>	
-		    		<h:message id="m2" for="nazwisko" style="color:red"/>
-		    </h:panelGroup>
-		    
-		</h:panelGrid>
-		
-			<h:commandButton action="odczytaneDane" value="Wyślij" ></h:commandButton><br/>
-			
-		
-			</h:form>
-			</div>
-	  </composite:implementation>
+			<h:panelGrid columns="3" border="0">
+				<h:panelGroup>
+					<h:outputText value="Podaj Login: " />
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:inputText value="#{indexBean.imie}" id="imie" required="true"
+						requiredMessage="Podanie loginu jest niezbędne">
+
+					</h:inputText>
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:message id="m1" for="imie" style="color:red" />
+				</h:panelGroup>
+
+				<h:panelGroup>
+					<h:outputText value="Podaj Hasło: " />
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:inputSecret value="#{indexBean.nazwisko}" id="nazwisko"
+						required="true" requiredMessage="Podanie hasła jest niezbędne">
+					</h:inputSecret>
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:message id="m2" for="nazwisko" style="color:red" />
+				</h:panelGroup>
+
+			</h:panelGrid>
+
+			<h:commandButton action="odczytaneDane" value="Wyślij"></h:commandButton>
+			<br />
+
+
+		</h:form>
+	</div>
+</composite:implementation>
 </html>

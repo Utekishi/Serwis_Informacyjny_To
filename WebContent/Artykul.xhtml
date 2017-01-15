@@ -16,23 +16,53 @@
 		<ui:define name="content">
 
 			<div class="container-fluid">
-			#{artykulBean.pobierzArtykul}
+
 				<div class="col-md-12">
 					<dl>
 						<h3>
-							<h:outputText value="#{artykulBean.wybranyArtykul.tytul}" />
+							<h:outputText value="#{artykuly.tytul}" />
 						</h3>
 						<br />
-						<img src="#{artykulBean.wybranyArtykul.obrazek}" />
-						<br />
+						<img src="#{artykuly.obrazek}" />
 						<dt>
-							<h:outputText value="#{artykulBean.wybranyArtykul.autor}" />
+							Autor:
+							<h:outputText value="${artykuly.autor}" />
 						</dt>
-						<br />
-						<h:outputText value="#{artykulBean.wybranyArtykul.tresc}" />
+
+
+						<dt>
+							Data publikacji:
+							<h:outputText value="${artykuly.dataPublikacji}" />
+						</dt>
+						<h:outputText value="#{artykuly.tresc}" />
 					</dl>
 				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Autor</th>
+							<th>Data wstawienia</th>
+						</tr>
+					</thead>
+					<ui:repeat value="#{komentarzBean.komentarze}" var="komentarze">
+						<tbody>
+							<tr class="active">
+								<td><h:outputText value="${komentarze.tresc}" /></td>
+								<td><h:outputText value="${komentarze.autor}" /></td>
+								<td><h:outputText value="${komentarze.dataUtworzenia}" /></td>
+							</tr>
+						</tbody>
 
+					</ui:repeat>
+				</table>
+				<div class="komentarz">
+					<textarea rows="4" cols="50">
+Wpisz komentarz tutaj...
+					</textarea>
+				</div>
+				<h:commandButton action="odczytaneDane" value="Wyślij"></h:commandButton>
+				<br />
 			</div>
 
 

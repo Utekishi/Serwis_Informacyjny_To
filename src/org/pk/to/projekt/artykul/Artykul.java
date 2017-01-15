@@ -59,8 +59,8 @@ public class Artykul {
 		public Date getDataPublikacji() {
 			return dataPublikacji;
 		}
-		public void setDataPublikacj(Date dataPublikacj) {
-			this.dataPublikacji = dataPublikacj;
+		public void setDataPublikacji(Date dataPublikacji) {
+			this.dataPublikacji = dataPublikacji;
 		}
 
 		   

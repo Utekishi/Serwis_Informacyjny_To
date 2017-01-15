@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:my="http://xmlns.jcp.org/jsf/composite/mycomponents">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Serwis informacyjny</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/default/main.xhtml">
+		<ui:define name="content">
+
+			<div class="container-fluid">
+
+				<div class="col-md-12">
+					<dl>
+						<ui:repeat value="#{artykulBean.artykuly}" var="artykuly">
+							<div class="asdasd">
+								<h:form>
+									<h:commandLink action="#{navigationController.processArtykul}"
+										value="${artykuly.tytul}" />
+								</h:form>
+								<br /> <img src="${artykuly.obrazek}" /> <br />
+								<dt>
+									Autor:
+									<h:outputText value="${artykuly.autor}" />
+								</dt>
+								
+
+								<dt>
+									Data publikacji:
+									<h:outputText value="${artykuly.dataPublikacji}" />
+								</dt>
+
+								<h:outputText value="#{artykuly.tresc}" />
+							</div>
+						</ui:repeat>
+					</dl>
+
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>
