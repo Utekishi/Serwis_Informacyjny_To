@@ -59,6 +59,13 @@ public String moveToIndex(){
    public String processLogowanie(){
 		      return "logowanie";
 	   }
+   
+   public String processWylogowanie(){
+	   FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	   return "/home.xhtml?faces-redirect=true";
+}
+   
+
 	   
    
    //Niewa¿ne bo testowe

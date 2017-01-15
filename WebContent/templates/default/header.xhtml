@@ -20,7 +20,8 @@
                 <h:form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><h:commandLink action="#{nawigacjaController.processRejestracja}" value="Rejestracja" /></li>
-                        <li><h:commandLink action="#{nawigacjaController.processLogowanie}" value="Logowanie" /></li>
+                        <li><h:commandLink action="#{nawigacjaController.processLogowanie}" value="Logowanie"   rendered="#{uzytkownikController.poziomDostepu lt '1'}"/></li>
+ 					<li><h:commandLink action="#{nawigacjaController.processWylogowanie}" value="Wylogowanie"   rendered="#{uzytkownikController.poziomDostepu gt '0'}"/></li>
  					</ul>
                  </h:form>
                     <form class="navbar-form navbar-right">

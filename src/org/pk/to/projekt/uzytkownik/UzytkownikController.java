@@ -20,6 +20,7 @@ public class UzytkownikController implements Serializable {
    private static final long serialVersionUID = 1L;
 
    public String informacjaNaglowek = "Brak sesji";
+   public int poziomDostepu =-1;
    public Uzytkownik uzytkownikZFormLogowania = new Uzytkownik();   
    public Uzytkownik uzytkownikZFormRejestrowania = new Uzytkownik();   
    public UzytkownikController(){
@@ -44,7 +45,7 @@ public class UzytkownikController implements Serializable {
 	   }else if(uzytkownikSesji.typKonta==3){
 		   informacjaNaglowek="Witaj administratorze, <name>"+uzytkownikSesji.imie; 
 	   }
-
+	   poziomDostepu=uzytkownikSesji.typKonta;
 	   }
 
 public String getInformacjaNaglowek() {
@@ -139,7 +140,7 @@ private String setUzytkownik(Uzytkownik pUzytkownik){
     ResultSet rs = null;
     PreparedStatement pst = null;
     Connection con = UzytkownikBean.getConnection();
-    String stm = "INSERT INTO Uzytkownik Imie = ?, Nazwisko = ?,Login = ?, Haslo = ?,Typ_Konta = ?,Status_Konta = ?,Data_Utworzenia = ?";
+    String stm = "INSERT INTO Uzytkownik(Imie, Nazwisko, Login, Haslo, Typ_Konta, Status_Konta, Data_Utworzenia) VALUES(?, ?, ?, ?, 1, 1, NOW());";
 String wynik;
     try {   
         pst = con.prepareStatement(stm);
@@ -147,9 +148,6 @@ String wynik;
         pst.setString(2,pUzytkownik.nazwisko);
         pst.setString(3,pUzytkownik.login);
         pst.setString(4,pUzytkownik.haslo);
-        pst.setInt(5,pUzytkownik.typKonta);
-        pst.setInt(6,pUzytkownik.statusKonta);
-        pst.setDate(7,pUzytkownik.dataUtworzenia);
         pst.execute();
     
     } catch (SQLException e) {
@@ -167,6 +165,17 @@ public Uzytkownik getUzytkownikZFormRejestrowania() {
 public void setUzytkownikZFormRejestrowania(Uzytkownik uzytkownikZFormRejestrowania) {
 	this.uzytkownikZFormRejestrowania = uzytkownikZFormRejestrowania;
 }
+
+public int getPoziomDostepu() {
+	System.err.println("poziomDostepu: "+poziomDostepu);
+	return poziomDostepu;
+	
+}
+
+public void setPoziomDostepu(int poziomDostepu) {
+	this.poziomDostepu = poziomDostepu;
+}
+
 
 
 

@@ -31,7 +31,7 @@
 									<h:outputText value="#{artykuly.autor}" />
 								</dt>
 								<br />
-								<h:outputText value="#{artykuly.tresc}" />
+								<h:outputText value="#{artykuly.tresc}"  rendered="#{uzytkownikController.poziomDostepu eq '1'}" />
           
 							</div>
 						</ui:repeat>

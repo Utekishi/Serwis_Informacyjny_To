@@ -31,18 +31,21 @@ public class KomentarzBean implements Serializable {
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		Connection con = getConnection();
-		String stm = "Select * from komentarze";
+		String stm = "Select * from komentarze where Artykul_Id = ? ";
 	
 		try {
 			pst = con.prepareStatement(stm);
+			pst.setInt(1,artykulId);
 			pst.execute();
 			rs = pst.getResultSet();
-
+			
+			
 			while (rs.next()) {
 				Komentarz komentarz = new Komentarz();
 				komentarz.setId(rs.getInt(1));
 				komentarz.setTresc(rs.getClob(2));
-				komentarz.setAutor(rs.getInt(3));
+				komentarz.setAutorId(rs.getInt(3));
+				komentarz.setArtykulId(rs.getInt(3));
 				komentarz.setDataUtworzenia(rs.getDate(4));
 
 				records.add(komentarz);
