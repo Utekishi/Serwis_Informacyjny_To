@@ -23,30 +23,31 @@ public class UzytkownikController implements Serializable {
 	public int poziomDostepu = -1;
 	public Uzytkownik uzytkownikZFormLogowania = new Uzytkownik();
 	public Uzytkownik uzytkownikZFormRejestrowania = new Uzytkownik();
+	public Uzytkownik uzytkownikZUpdate = new Uzytkownik();
 
 	public UzytkownikController() {
 		Uzytkownik uzytkownikSesji = new Uzytkownik();
 		FacesContext context = FacesContext.getCurrentInstance();
 		if (!context.getExternalContext().getSessionMap().containsKey("uzytkownikSesji")) {
 
-			uzytkownikSesji.typKonta = 0;
+			uzytkownikSesji.setTypKonta(0);
 			context.getExternalContext().getSessionMap().put("uzytkownikSesji", uzytkownikSesji);
 			informacjaNaglowek = "Witaj, goœæ";
 		}
 		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
 
-		if (uzytkownikSesji.typKonta == 0) {
+		if (uzytkownikSesji.getTypKonta() == 0) {
 			informacjaNaglowek = "Witaj, goœæ";
-		} else if (uzytkownikSesji.typKonta == 1) {
-			informacjaNaglowek = "Witaj u¿ytkowniku, " + uzytkownikSesji.imie;
-		} else if (uzytkownikSesji.typKonta == 2) {
-			informacjaNaglowek = "Witaj moderatorze, " + uzytkownikSesji.imie;
-		}else if (uzytkownikSesji.typKonta == 3) {
-			informacjaNaglowek = "Witaj redaktorze, " + uzytkownikSesji.imie;
-		} else if (uzytkownikSesji.typKonta == 4) {
-			informacjaNaglowek = "Witaj administratorze, " + uzytkownikSesji.imie;
+		} else if (uzytkownikSesji.getTypKonta() == 1) {
+			informacjaNaglowek = "Witaj u¿ytkowniku, " + uzytkownikSesji.getImie();
+		} else if (uzytkownikSesji.getTypKonta() == 2) {
+			informacjaNaglowek = "Witaj moderatorze, " + uzytkownikSesji.getImie();
+		} else if (uzytkownikSesji.getTypKonta() == 3) {
+			informacjaNaglowek = "Witaj redaktorze, " + uzytkownikSesji.getImie();
+		} else if (uzytkownikSesji.getTypKonta() == 4) {
+			informacjaNaglowek = "Witaj administratorze, " + uzytkownikSesji.getImie();
 		}
-		poziomDostepu = uzytkownikSesji.typKonta;
+		poziomDostepu = uzytkownikSesji.getTypKonta();
 	}
 
 	public String getInformacjaNaglowek() {
@@ -71,6 +72,12 @@ public class UzytkownikController implements Serializable {
 
 	public String getZarejestruj() {
 		return setUzytkownik(uzytkownikZFormRejestrowania);
+	}
+	
+
+	public String getUpdatePanel() {
+		return setUpdateUzytkownik(uzytkownikZUpdate);
+
 	}
 
 	public void setInformacjaNaglowek(String informacjaNaglowek) {
@@ -138,27 +145,54 @@ public class UzytkownikController implements Serializable {
 		return null;
 	}
 
-	private String setUzytkownik(Uzytkownik pUzytkownik){
-	    ResultSet rs = null;
-	    PreparedStatement pst = null;
-	    Connection con = UzytkownikBean.getConnection();
-	    String stm = "INSERT INTO Uzytkownik(Imie, Nazwisko, Login, Haslo, Typ_Konta, Status_Konta, Data_Utworzenia) VALUES(?, ?, ?, ?, 1, 1, NOW());";
-	String wynik;
-	    try {   
-	        pst = con.prepareStatement(stm);
-	        pst.setString(1,pUzytkownik.imie);
-	        pst.setString(2,pUzytkownik.nazwisko);
-	        pst.setString(3,pUzytkownik.login);
-	        pst.setString(4,pUzytkownik.haslo);
-	        pst.execute();
-	    
-	    } catch (SQLException e) {
-	       e.printStackTrace();
-	       wynik="Blad podczas dodawania do bazy danych";
-	    }
-	    wynik="Zarejestrowano poprwanie";
-	    return wynik;
-	 }
+	private String setUzytkownik(Uzytkownik pUzytkownik) {
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = UzytkownikBean.getConnection();
+		String stm = "INSERT INTO Uzytkownik(Imie, Nazwisko, Login, Haslo, Typ_Konta, Status_Konta, Data_Utworzenia) VALUES(?, ?, ?, ?, 1, 1, NOW());";
+		String wynik;
+		try {
+			pst = con.prepareStatement(stm);
+			pst.setString(1, pUzytkownik.getImie());
+			pst.setString(2, pUzytkownik.getNazwisko());
+			pst.setString(3, pUzytkownik.getLogin());
+			pst.setString(4, pUzytkownik.getHaslo());
+			pst.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			wynik = "Blad podczas dodawania do bazy danych";
+		}
+		wynik = "Zarejestrowano poprwanie";
+		return wynik;
+	}
+
+	private String setUpdateUzytkownik(Uzytkownik pUzytkownik) {
+		Uzytkownik uzytkownikSesji = new Uzytkownik();
+		FacesContext context = FacesContext.getCurrentInstance();
+		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
+		int idUzytkownika = uzytkownikSesji.getId();
+
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = UzytkownikBean.getConnection();
+		String stm = "UPDATE Uzytkownik SET Imie = ?, Nazwisko = ?, Haslo = ? WHERE Id = ?;";
+		String wynik;
+		try {
+			pst = con.prepareStatement(stm);
+			pst.setString(1, pUzytkownik.getImie());
+			pst.setString(2, pUzytkownik.getNazwisko());
+			pst.setString(3, pUzytkownik.getHaslo());
+			pst.setInt(4, idUzytkownika);
+			pst.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			wynik = "Blad podczas dodawania do bazy danych";
+		}
+		wynik = "";
+		return wynik;
+	}
 
 	public Uzytkownik getUzytkownikZFormRejestrowania() {
 		return uzytkownikZFormRejestrowania;
@@ -167,9 +201,16 @@ public class UzytkownikController implements Serializable {
 	public void setUzytkownikZFormRejestrowania(Uzytkownik uzytkownikZFormRejestrowania) {
 		this.uzytkownikZFormRejestrowania = uzytkownikZFormRejestrowania;
 	}
+	
+	public Uzytkownik getUzytkownikZUpdate() {
+		return uzytkownikZUpdate;
+	}
+
+	public void setUzytkownikZUpdate(Uzytkownik uzytkownikZUpdate) {
+		this.uzytkownikZUpdate = uzytkownikZUpdate;
+	}
 
 	public int getPoziomDostepu() {
-		System.err.println("poziomDostepu: " + poziomDostepu);
 		return poziomDostepu;
 
 	}

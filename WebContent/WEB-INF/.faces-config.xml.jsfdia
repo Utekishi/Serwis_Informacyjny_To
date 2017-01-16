@@ -28,26 +28,47 @@
     NAME="output4" PATH="/artykul.xhtml" TARGET="rules:#artykul.xhtml"
     TITLE="#{nawigacjaController.processArtykul}:artykul" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
+    ID="nowyArtykul:#{nawigacjaController.processNowyArtykul}:#dodajArtykul.xhtml"
+    NAME="output5" PATH="/dodajArtykul.xhtml"
+    TARGET="rules:#dodajArtykul.xhtml"
+    TITLE="#{nawigacjaController.processNowyArtykul}:nowyArtykul" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
     ID="panel:#{nawigacjaController.moveToPanel}:#panel.xhtml"
-    NAME="output5" PATH="/panel.xhtml" TARGET="rules:#panel.xhtml"
+    NAME="output6" PATH="/panel.xhtml" TARGET="rules:#panel.xhtml"
     TITLE="#{nawigacjaController.moveToPanel}:panel" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="edycjaArtykulu:#{nawigacjaController.moveToEdycjaArtykulu}:#edycjaArtykulu.xhtml"
-    NAME="output6" PATH="/edycjaArtykulu.xhtml"
+    NAME="output7" PATH="/edycjaArtykulu.xhtml"
     TARGET="rules:#edycjaArtykulu.xhtml"
     TITLE="#{nawigacjaController.moveToEdycjaArtykulu}:edycjaArtykulu" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="indexPolityka:#{nawigacjaController.moveToIndexPolityka}:#indexPolityka.xhtml"
+    NAME="output8" PATH="/indexPolityka.xhtml"
+    TARGET="rules:#indexPolityka.xhtml"
+    TITLE="#{nawigacjaController.moveToIndexPolityka}:indexPolityka" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="indexWiadomosci:#{nawigacjaController.moveToIndexWiadomosci}:#indexWiadomosci.xhtml"
+    NAME="output9" PATH="/indexWiadomosci.xhtml"
+    TARGET="rules:#indexWiadomosci.xhtml"
+    TITLE="#{nawigacjaController.moveToIndexWiadomosci}:indexWiadomosci" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#logowanie.xhtml" PATH="/logowanie.xhtml"
   SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#testTechnologiczny.xhtml"
-  PATH="/testTechnologiczny.xhtml" SHAPE="304,385,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/testTechnologiczny.xhtml" SHAPE="304,417,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#artykul.xhtml" PATH="/artykul.xhtml"
-  SHAPE="304,497,0,0" model-entity="JSFProcessGroup"/>
+  SHAPE="304,529,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#rejestracja.xhtml" PATH="/rejestracja.xhtml"
-  SHAPE="304,273,0,0" model-entity="JSFProcessGroup"/>
+  SHAPE="304,305,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dodajArtykul.xhtml"
+  PATH="/dodajArtykul.xhtml" SHAPE="304,641,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#panel.xhtml" PATH="/panel.xhtml"
-  SHAPE="304,337,0,0" model-entity="JSFProcessGroup"/>
+  SHAPE="304,369,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#edycjaArtykulu.xhtml"
-  PATH="/edycjaArtykulu.xhtml" SHAPE="304,785,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/edycjaArtykulu.xhtml" SHAPE="304,929,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#indexWiadomosci.xhtml"
+  PATH="/indexWiadomosci.xhtml" SHAPE="304,993,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#indexPolityka.xhtml"
+  PATH="/indexPolityka.xhtml" SHAPE="304,433,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

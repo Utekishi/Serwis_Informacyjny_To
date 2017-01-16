@@ -1,13 +1,12 @@
 package org.pk.to.projekt.komentarz;
 
-import java.sql.Clob;
 import java.sql.Date;
 
 public class Komentarz {
-	int id;
-	Clob tresc;
-	int autorId;
-	int artykulId;
+	private int id;
+	private String tresc;
+	private int autorId;
+	private int artykulId;
 
 	Date dataUtworzenia;
 
@@ -19,11 +18,11 @@ public class Komentarz {
 		this.id = id;
 	}
 
-	public Clob getTresc() {
+	public String getTresc() {
 		return tresc;
 	}
 
-	public void setTresc(Clob tresc) {
+	public void setTresc(String tresc) {
 		this.tresc = tresc;
 	}
 

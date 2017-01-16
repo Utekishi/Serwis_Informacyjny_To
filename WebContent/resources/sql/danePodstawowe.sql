@@ -37,6 +37,13 @@ CREATE TABLE IF NOT EXISTS Komentarze (
     FOREIGN KEY (Artykul_Id) REFERENCES Artykul (id)
 );
 
+CREATE TABLE IF NOT EXISTS Reklamy ( 
+    Id int PRIMARY KEY AUTO_INCREMENT,
+    Data_Dodania Date NULL,
+    Dostawca VARCHAR(25) NOT NULL, 
+    Link VARCHAR(100) NOT NULL, 
+    Koszt int NOT NULL
+);
 
 
 

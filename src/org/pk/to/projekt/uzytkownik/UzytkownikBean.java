@@ -11,12 +11,17 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.pk.to.projekt.artykul.Artykul;
 
 @ManagedBean(name = "uzytkownikBean", eager = true)
 @SessionScoped
 public class UzytkownikBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	private Uzytkownik uzytkownikPanelPokaz, uzytkownikPanelUstaw;
 
 	public List<Uzytkownik> getUzytkownicy() {
 		ResultSet rs = null;
@@ -47,7 +52,44 @@ public class UzytkownikBean implements Serializable {
 		}
 		return records;
 	}
+	
 
+
+	public String getPobierzUzytkownika() {
+		Uzytkownik uzytkownikSesji = new Uzytkownik();
+		FacesContext context = FacesContext.getCurrentInstance();
+		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
+		int idUzytkownika = uzytkownikSesji.getId();
+		//if (context.getExternalContext().getSessionMap().containsKey("artykulAutora")) {
+
+			ResultSet rs = null;
+			PreparedStatement pst = null;
+			Connection con = UzytkownikBean.getConnection();
+			String stm = "Select * from uzytkownik where Id = ? ";
+			try {
+				pst = con.prepareStatement(stm);
+				pst.setInt(1, idUzytkownika);
+				pst.execute();
+				rs = pst.getResultSet();
+				Uzytkownik uzytkownik = new Uzytkownik();
+				if (rs.next()) {
+					uzytkownik.setImie(rs.getString(2));
+					uzytkownik.setNazwisko(rs.getString(3));
+					uzytkownik.setLogin(rs.getString(4));
+				}
+				uzytkownikPanelPokaz = uzytkownik;
+
+				//return "";
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		//}
+
+		return "";
+
+	}
+
+	
 	public static Connection getConnection() {
 		Connection con = null;
 		try {
@@ -66,5 +108,21 @@ public class UzytkownikBean implements Serializable {
 		} finally {
 		}
 		return con;
+	}
+	
+	public Uzytkownik getUzytkownikPanelPokaz() {
+		return uzytkownikPanelPokaz;
+	}
+
+	public void setUzytkownikPanelPokaz(Uzytkownik uzytkownikPanelPokaz) {
+		this.uzytkownikPanelPokaz = uzytkownikPanelPokaz;
+	}
+
+	public Uzytkownik getUzytkownikPanelUstaw() {
+		return uzytkownikPanelUstaw;
+	}
+
+	public void setUzytkownikPanelUstaw(Uzytkownik uzytkownikPanelUstaw) {
+		this.uzytkownikPanelUstaw = uzytkownikPanelUstaw;
 	}
 }

@@ -14,8 +14,10 @@
 <h:body>
 	<ui:composition template="/templates/default/main.xhtml">
 		<ui:define name="content">
-		#{artykulBean.pobierzArtykul} 
+		#{artykulBean.pobierzArtykul}
+		
 			<div class="container-fluid">
+
 				<div class="col-md-12">
 					<dl>
 						<h3>
@@ -31,12 +33,14 @@
 
 						<dt>
 							Data publikacji:
-							<h:outputText value="${artykuly.dataPublikacji}" />
+							<h:outputText
+								value="${artykulBean.wybranyArtykul.data_publikacji}" />
 						</dt>
 						<h:outputText value="#{artykulBean.wybranyArtykul.tresc}"
 							escape="false" />
 					</dl>
 				</div>
+
 				<table class="table">
 					<thead>
 						<tr>
@@ -57,12 +61,18 @@
 
 					</ui:repeat>
 				</table>
-				<div class="komentarz">
-					<textarea rows="4" cols="50">
-Wpisz komentarz tutaj...
-					</textarea>
-				</div>
-				<h:commandButton action="odczytaneDane" value="Wyślij"></h:commandButton>
+				<ui:fragment rendered="#{uzytkownikController.poziomDostepu gt '0'}">
+					<h:form>
+							<h:inputText
+								value="#{komentarzController.komentarzZFormNowego.tresc}"
+								id="tresc" required="true"
+								requiredMessage="Podanie treści jest niezbędne">
+ ...
+ 					    </h:inputText>
+						<h:commandButton action="odczytaneDaneNowyKomentarz"
+							value="Wyślij"></h:commandButton>
+					</h:form>
+				</ui:fragment>
 				<br />
 			</div>
 

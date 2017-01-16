@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14845081342290" configfile="/Serwis_Informacyjny_To/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="754" id="pf14845081757411" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf148450990963321 pf148450990963322 pf148450990963323 pf148450990963324 pf148450990963325" inlinks="pf148450990963321" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="754" id="pf14845081757411" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf148450990963321 pf148450990963322 pf148450990963323 pf148450990963324 pf148451775578030 pf148451775578031" inlinks="pf148450990963321" path="/index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="logowanie.xhtml" id="pf148450990963326" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf148450990963322" path="/logowanie.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="rejestracja.xhtml" id="pf148450990963327" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf148450990963323" path="/rejestracja.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="testTechnologiczny.xhtml" id="pf148450990963328" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf148450990963324" path="/testTechnologiczny.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="artykul.xhtml" id="pf148450990963329" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf148450990963325" path="/artykul.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="artykul.xhtml" id="pf148451775578032" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf148451775578030" path="/artykul.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="dodajArtykul.xhtml" id="pf148451775578033" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf148451775578031" path="/dodajArtykul.xhtml"/>
   <links id="pf148450990963321" target="pf14845081757411" source="pf14845081757411" outcome="index" fromaction="#{nawigacjaController.processIndex}"/>
   <links id="pf148450990963322" target="pf148450990963326" source="pf14845081757411" outcome="logowanie" fromaction="#{nawigacjaController.processLogowanie}"/>
   <links id="pf148450990963323" target="pf148450990963327" source="pf14845081757411" outcome="rejestracja" fromaction="#{nawigacjaController.processRejestracja}"/>
   <links id="pf148450990963324" target="pf148450990963328" source="pf14845081757411" outcome="testTechnologiczny" fromaction="#{nawigacjaController.processTestTechnologiczny}"/>
-  <links id="pf148450990963325" target="pf148450990963329" source="pf14845081757411" outcome="artykul" fromaction="#{nawigacjaController.processArtykul}"/>
+  <links id="pf148451775578030" target="pf148451775578032" source="pf14845081757411" outcome="artykul" fromaction="#{nawigacjaController.processArtykul}"/>
+  <links id="pf148451775578031" target="pf148451775578033" source="pf14845081757411" outcome="nowyArtykul" fromaction="#{nawigacjaController.processNowyArtykul}"/>
 </pageflow:Pageflow>

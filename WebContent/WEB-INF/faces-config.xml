@@ -1,48 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config
-    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-    version="2.2">
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
 
-<navigation-rule>
-   <from-view-id>/index.xhtml</from-view-id>
-   <navigation-case>
-      <from-action>#{nawigacjaController.processIndex}</from-action>
-      <from-outcome>index</from-outcome>
-      <to-view-id>/index.xhtml</to-view-id>
-   </navigation-case>
-   <navigation-case>
-      <from-action>#{nawigacjaController.processLogowanie}</from-action>
-      <from-outcome>logowanie</from-outcome>
-      <to-view-id>/logowanie.xhtml</to-view-id>
-   </navigation-case>
-      <navigation-case>
-      <from-action>#{nawigacjaController.processRejestracja}</from-action>
-      <from-outcome>rejestracja</from-outcome>
-      <to-view-id>/rejestracja.xhtml</to-view-id>
-   </navigation-case>
-   <navigation-case>
-      <from-action>#{nawigacjaController.processTestTechnologiczny}</from-action>
-      <from-outcome>testTechnologiczny</from-outcome>
-      <to-view-id>/testTechnologiczny.xhtml</to-view-id>
-   </navigation-case>
-   <navigation-case>
-      <from-action>#{nawigacjaController.processArtykul}</from-action>
-      <from-outcome>artykul</from-outcome>
-      <to-view-id>/artykul.xhtml</to-view-id>
-   </navigation-case>
-      <navigation-case>
-      <from-action>#{nawigacjaController.moveToPanel}</from-action>
-      <from-outcome>panel</from-outcome>
-      <to-view-id>/panel.xhtml</to-view-id>
-   </navigation-case>
-      <navigation-case>
-      <from-action>#{nawigacjaController.moveToEdycjaArtykulu}</from-action>
-      <from-outcome>edycjaArtykulu</from-outcome>
-      <to-view-id>/edycjaArtykulu.xhtml</to-view-id>
-   </navigation-case>
-</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{nawigacjaController.processIndex}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{nawigacjaController.processLogowanie}</from-action>
+			<from-outcome>logowanie</from-outcome>
+			<to-view-id>/logowanie.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{nawigacjaController.processRejestracja}</from-action>
+			<from-outcome>rejestracja</from-outcome>
+			<to-view-id>/rejestracja.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{nawigacjaController.processTestTechnologiczny}</from-action>
+			<from-outcome>testTechnologiczny</from-outcome>
+			<to-view-id>/testTechnologiczny.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{nawigacjaController.processArtykul}</from-action>
+			<from-outcome>artykul</from-outcome>
+			<to-view-id>/artykul.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{nawigacjaController.processNowyArtykul}</from-action>
+			<from-outcome>nowyArtykul</from-outcome>
+			<to-view-id>/dodajArtykul.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{nawigacjaController.moveToPanel}</from-action>
+			<from-outcome>panel</from-outcome>
+			<to-view-id>/panel.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{nawigacjaController.moveToEdycjaArtykulu}</from-action>
+			<from-outcome>edycjaArtykulu</from-outcome>
+			<to-view-id>/edycjaArtykulu.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{nawigacjaController.moveToIndexPolityka}</from-action>
+			<from-outcome>indexPolityka</from-outcome>
+			<to-view-id>/indexPolityka.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{nawigacjaController.moveToIndexWiadomosci}</from-action>
+			<from-outcome>indexWiadomosci</from-outcome>
+			<to-view-id>/indexWiadomosci.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
 
 

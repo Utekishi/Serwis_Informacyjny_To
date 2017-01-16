@@ -5,14 +5,12 @@
     <ui:composition>
    <h:form>
         <ul class="nav nav-sidebar">
-            <li class="active"><h:commandLink action="#{nawigacjaController.processIndex}" value="Strona główna" /></li>
-            <li><a href="#">Wiadomości</a></li>
-            <li><a href="#">Polityka</a></li>
-            <li><a href="#">Sport</a></li>
-      		<li><h:commandLink action="#{nawigacjaController.processRejestracja}" value="Rejestracja"  /></li>
-            <li><h:commandLink action="#{nawigacjaController.processLogowanie}" value="Logowanie"  /></li>
+            <li><h:commandLink action="#{nawigacjaController.processIndex}" value="Strona główna" /></li>
+            <li><h:commandLink action="#{nawigacjaController.processIndexWiadomosci}" value="Wiadomości" /></li>
+            <li><h:commandLink action="#{nawigacjaController.processIndexPolityka}" value="Polityka" /></li>
             <br/>
-            <li><img src="http://lorempixel.com/225/225/"></img></li>
+            #{reklamaBean.reklamy}
+            <li><img src="#{reklamy.link}"></img></li>
         </ul>
     </h:form>
 

@@ -30,6 +30,14 @@ public class NawigacjaController implements Serializable {
 		return "rejestracja";
 	}
 
+	public String processNowyArtykul() {
+		return "nowyArtykul";
+	}
+
+	public String moveToNowyArtykul() {
+		return "nowyArtykul";
+	}
+
 	public String processIndex() {
 		return "index";
 	}
@@ -43,7 +51,6 @@ public class NawigacjaController implements Serializable {
 	}
 
 	public String processArtykul() {
-
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().put("wybranyArtykulId", artykulId);
 		return "artykul";
@@ -61,7 +68,7 @@ public class NawigacjaController implements Serializable {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "/home.xhtml?faces-redirect=true";
 	}
-	
+
 	public String moveToPanel() {
 		return "panel";
 	}
@@ -69,7 +76,7 @@ public class NawigacjaController implements Serializable {
 	public String processPanel() {
 		return "panel";
 	}
-	
+
 	public String moveToEdycjaArtykulu() {
 		return "edycjaArtykulu";
 	}
@@ -77,8 +84,24 @@ public class NawigacjaController implements Serializable {
 	public String processEdycjaArtykulu() {
 		return "edycjaArtykulu";
 	}
+	
+	public String moveToIndexWiadomosci() {
+		return "indexWiadomosci";
+	}
 
-	//Geters/Seters
+	public String processIndexWiadomosci() {
+		return "indexWiadomosci";
+	}
+	
+	public String moveToIndexPolityka() {
+		return "indexPolityka";
+	}
+
+	public String processIndexPolityka() {
+		return "indexPolityka";
+	}
+
+	// Geters/Seters
 	public String getPageId() {
 		return pageId;
 	}
@@ -95,5 +118,4 @@ public class NawigacjaController implements Serializable {
 		this.artykulId = artykulId;
 	}
 
-	
 }

@@ -3,15 +3,15 @@ package org.pk.to.projekt.uzytkownik;
 import java.sql.Date;
 
 public class Uzytkownik {
-	int id;
-	String imie;
-	String nazwisko;
-	String login;
-	String haslo;
-	int typKonta = -1;
-	int statusKonta;
-	Date dataUtworzenia;
-	Date dataZbanowania;
+	private int id;
+	private String imie;
+	private String nazwisko;
+	private String login;
+	private String haslo;
+	private int typKonta = -1;
+	private int statusKonta;
+	private Date dataUtworzenia;
+	private Date dataZbanowania;
 
 	public int getId() {
 		return id;

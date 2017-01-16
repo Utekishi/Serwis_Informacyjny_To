@@ -1,17 +1,16 @@
 package org.pk.to.projekt.artykul;
 
-import java.sql.Clob;
 import java.sql.Date;
 
 public class Artykul {
-	int id;
-	int autor;
-	String tytul;
-	Clob tresc;
-	int status;
-	int kategoria;
-	String obrazek;
-	Date dataPublikacji;
+	private int id;
+	private int autor;
+	private String tytul;
+	private String tresc = "";
+	private int status_artykulu;
+	private int kategoria;
+	private String obrazek;
+	private Date data_publikacji;
 
 	public int getId() {
 		return id;
@@ -37,20 +36,20 @@ public class Artykul {
 		this.tytul = tytul;
 	}
 
-	public Clob getTresc() {
+	public String getTresc() {
 		return tresc;
 	}
 
-	public void setTresc(Clob tresc) {
+	public void setTresc(String tresc) {
 		this.tresc = tresc;
 	}
 
-	public int getStatus() {
-		return status;
+	public int getStatus_artykulu() {
+		return status_artykulu;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setStatus_artykulu(int status_artykulu) {
+		this.status_artykulu = status_artykulu;
 	}
 
 	public int getKategoria() {
@@ -69,12 +68,12 @@ public class Artykul {
 		this.obrazek = obrazek;
 	}
 
-	public Date getDataPublikacji() {
-		return dataPublikacji;
+	public Date getData_publikacji() {
+		return data_publikacji;
 	}
 
-	public void setDataPublikacj(Date dataPublikacj) {
-		this.dataPublikacji = dataPublikacj;
+	public void setData_publikacji(Date data_publikacji) {
+		this.data_publikacji = data_publikacji;
 	}
 
 }

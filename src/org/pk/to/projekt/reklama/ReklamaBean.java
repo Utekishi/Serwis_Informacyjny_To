@@ -1,4 +1,4 @@
-package org.pk.to.projekt.komentarz;
+package org.pk.to.projekt.reklama;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -13,14 +13,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-@ManagedBean(name = "komentarzBean", eager = true)
+@ManagedBean(name = "reklamaBean", eager = true)
 @SessionScoped
-public class KomentarzBean implements Serializable {
+public class ReklamaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public List<Komentarz> getKomentarze() {
-		List<Komentarz> records = new ArrayList<Komentarz>();
+	public List<Reklama> getReklamy() {
+		List<Reklama> records = new ArrayList<Reklama>();
 
 		FacesContext context = FacesContext.getCurrentInstance();
 		if (context.getExternalContext().getSessionMap().containsKey("wybranyArtykulId")) {
@@ -31,7 +31,7 @@ public class KomentarzBean implements Serializable {
 			ResultSet rs = null;
 			PreparedStatement pst = null;
 			Connection con = getConnection();
-			String stm = "Select * from komentarze where Artykul_Id = ? ";
+			String stm = "Select * from reklamy";
 
 			try {
 				pst = con.prepareStatement(stm);
@@ -40,14 +40,14 @@ public class KomentarzBean implements Serializable {
 				rs = pst.getResultSet();
 
 				while (rs.next()) {
-					Komentarz komentarz = new Komentarz();
-					komentarz.setId(rs.getInt(1));
-					komentarz.setTresc(rs.getString(2));
-					komentarz.setAutorId(rs.getInt(3));
-					komentarz.setArtykulId(rs.getInt(3));
-					komentarz.setDataUtworzenia(rs.getDate(4));
+					Reklama reklama = new Reklama();
+					reklama.setId(rs.getInt(1));
+					reklama.setData_dodania(rs.getDate(2));
+					reklama.setDostawca(rs.getString(3));
+					reklama.setLink(rs.getString(3));
+					reklama.setKoszt(rs.getInt(4));
 
-					records.add(komentarz);
+					records.add(reklama);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -56,7 +56,7 @@ public class KomentarzBean implements Serializable {
 		return records;
 	}
 
-	public static Connection getConnection() {
+	public Connection getConnection() {
 		Connection con = null;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");

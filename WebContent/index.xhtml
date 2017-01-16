@@ -21,10 +21,10 @@
 						<ui:repeat value="#{artykulBean.artykuly}" var="artykuly">
 							<div class="asdasd">
 								<h:form>
-									<h:commandLink action="#{nawigacjaController.processArtykul}"
+									<h3><h:commandLink action="#{nawigacjaController.processArtykul}"
  										value="#{artykuly.tytul}"> 
  										<f:param name="artykulId" value="${artykuly.id}" />
-          							</h:commandLink>
+          							</h:commandLink></h3>
 								</h:form>
 								<br /> <img src="#{artykuly.obrazek}" /> <br />
 								<dt>
@@ -35,7 +35,7 @@
 
 								<dt>
 									Data publikacji:
-									<h:outputText value="${artykuly.dataPublikacji}" />
+									<h:outputText value="${artykuly.data_publikacji}" />
 								</dt>
 								<br />
 								<h:outputText value="#{artykuly.tresc}" />

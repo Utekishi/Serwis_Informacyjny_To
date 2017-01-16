@@ -23,7 +23,8 @@ import org.pk.to.projekt.uzytkownik.UzytkownikBean;
 public class ArtykulBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Artykul wybranyArtykul;
+	private Artykul wybranyArtykul, artykulAutora;
+
 
 	public List<Artykul> getArtykuly() {
 		System.err.println(" List<Artykul> getArtykuly(");
@@ -42,11 +43,73 @@ public class ArtykulBean implements Serializable {
 				artykul.setId(rs.getInt(1));
 				artykul.setAutor(rs.getInt(2));
 				artykul.setTytul(rs.getString(3));
-				artykul.setTresc(rs.getClob(4));
-				artykul.setStatus(rs.getInt(5));
+				artykul.setTresc(rs.getString(4));
+				artykul.setStatus_artykulu(rs.getInt(5));
 				artykul.setKategoria(rs.getInt(6));
 				artykul.setObrazek(rs.getString(7));
-				artykul.setDataPublikacj(rs.getDate(8));
+				artykul.setData_publikacji(rs.getDate(8));
+				records.add(artykul);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.err.println("records: " + records);
+		return records;
+	}
+	
+	public List<Artykul> getArtykulyWiadomosci() {
+		System.err.println(" List<Artykul> getArtykuly(");
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = getConnection();
+		String stm = "Select * from artykul WHERE kategoria = 0";
+		List<Artykul> records = new ArrayList<Artykul>();
+		try {
+			pst = con.prepareStatement(stm);
+			pst.execute();
+			rs = pst.getResultSet();
+
+			while (rs.next()) {
+				Artykul artykul = new Artykul();
+				artykul.setId(rs.getInt(1));
+				artykul.setAutor(rs.getInt(2));
+				artykul.setTytul(rs.getString(3));
+				artykul.setTresc(rs.getString(4));
+				artykul.setStatus_artykulu(rs.getInt(5));
+				artykul.setKategoria(rs.getInt(6));
+				artykul.setObrazek(rs.getString(7));
+				artykul.setData_publikacji(rs.getDate(8));
+				records.add(artykul);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.err.println("records: " + records);
+		return records;
+	}
+	
+	public List<Artykul> getArtykulyPolityka() {
+		System.err.println(" List<Artykul> getArtykuly(");
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = getConnection();
+		String stm = "Select * from artykul WHERE kategoria = 1";
+		List<Artykul> records = new ArrayList<Artykul>();
+		try {
+			pst = con.prepareStatement(stm);
+			pst.execute();
+			rs = pst.getResultSet();
+
+			while (rs.next()) {
+				Artykul artykul = new Artykul();
+				artykul.setId(rs.getInt(1));
+				artykul.setAutor(rs.getInt(2));
+				artykul.setTytul(rs.getString(3));
+				artykul.setTresc(rs.getString(4));
+				artykul.setStatus_artykulu(rs.getInt(5));
+				artykul.setKategoria(rs.getInt(6));
+				artykul.setObrazek(rs.getString(7));
+				artykul.setData_publikacji(rs.getDate(8));
 				records.add(artykul);
 			}
 		} catch (SQLException e) {
@@ -75,15 +138,15 @@ public class ArtykulBean implements Serializable {
 					artykul.setId(rs.getInt(1));
 					artykul.setAutor(rs.getInt(2));
 					artykul.setTytul(rs.getString(3));
-					artykul.setTresc(rs.getClob(4));
-					artykul.setStatus(rs.getInt(5));
+					artykul.setTresc(rs.getString(4));
+					artykul.setStatus_artykulu(rs.getInt(5));
 					artykul.setKategoria(rs.getInt(6));
 					artykul.setObrazek(rs.getString(7));
-					artykul.setDataPublikacj(rs.getDate(8));
+					artykul.setData_publikacji(rs.getDate(8));
 				}
 				wybranyArtykul = artykul;
 
-				return "Pobrano poprawnie";
+				return "";
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -92,8 +155,48 @@ public class ArtykulBean implements Serializable {
 		return "Niepobrano";
 
 	}
+	
+	public String getPobierzArtykulAutora() {
+		Uzytkownik uzytkownikSesji = new Uzytkownik();
+		FacesContext context = FacesContext.getCurrentInstance();
+		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
+		int idUzytkownika = uzytkownikSesji.getId();
+		//if (context.getExternalContext().getSessionMap().containsKey("artykulAutora")) {
 
-	public Connection getConnection() {
+			ResultSet rs = null;
+			PreparedStatement pst = null;
+			Connection con = UzytkownikBean.getConnection();
+			String stm = "Select * from artykul where Autor = ? ";
+			int autor = idUzytkownika;
+			try {
+				pst = con.prepareStatement(stm);
+				pst.setInt(1, autor);
+				pst.execute();
+				rs = pst.getResultSet();
+				Artykul artykul = new Artykul();
+				if (rs.next()) {
+					artykul.setId(rs.getInt(1));
+					artykul.setAutor(rs.getInt(2));
+					artykul.setTytul(rs.getString(3));
+					artykul.setTresc(rs.getString(4));
+					artykul.setStatus_artykulu(rs.getInt(5));
+					artykul.setKategoria(rs.getInt(6));
+					artykul.setObrazek(rs.getString(7));
+					artykul.setData_publikacji(rs.getDate(8));
+				}
+				artykulAutora = artykul;
+
+				//return "";
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		//}
+
+		return "";
+
+	}
+
+	public static Connection getConnection() {
 		Connection con = null;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
@@ -119,6 +222,14 @@ public class ArtykulBean implements Serializable {
 
 	public void setWybranyArtykul(Artykul wybranyArtykul) {
 		this.wybranyArtykul = wybranyArtykul;
+	}
+	
+	public Artykul getArtykulAutora() {
+		return artykulAutora;
+	}
+
+	public void setArtykulAutora(Artykul artykulAutora) {
+		this.artykulAutora = artykulAutora;
 	}
 
 }
