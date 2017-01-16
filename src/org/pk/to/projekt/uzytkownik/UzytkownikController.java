@@ -10,8 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+
+import org.pk.to.projekt.artykul.ArtykulBean;
 
 @ManagedBean(name = "uzytkownikController", eager = true)
 @RequestScoped
@@ -19,58 +22,57 @@ public class UzytkownikController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public String informacjaNaglowek = "Brak sesji";
-	public int poziomDostepu = -1;
+	
+
 	public Date czyZbanowany = null;
 	public Uzytkownik uzytkownikZFormLogowania = new Uzytkownik();
 	public Uzytkownik uzytkownikZFormRejestrowania = new Uzytkownik();
 	public Uzytkownik uzytkownikZUpdate = new Uzytkownik();
 	public Uzytkownik uzytkownikBan = new Uzytkownik();
+	
+	@ManagedProperty("#{uzytkownikBean}")
+	private UzytkownikBean uzytkownikBeanSession;
 
-	public UzytkownikController() {
-		Uzytkownik uzytkownikSesji = new Uzytkownik();
-		FacesContext context = FacesContext.getCurrentInstance();
-		if (!context.getExternalContext().getSessionMap().containsKey("uzytkownikSesji")) {
 
-			uzytkownikSesji.setTypKonta(0);
-			context.getExternalContext().getSessionMap().put("uzytkownikSesji", uzytkownikSesji);
-			informacjaNaglowek = "Witaj, goœæ";
+
+	public void zainicjalizuj(){
+		
+		if (uzytkownikBeanSession == null) 
+			uzytkownikBeanSession=new UzytkownikBean();
+		
+			if (uzytkownikBeanSession.getUzytkownikZalogowany()==null) {	
+			Uzytkownik uzytkownikNowy = new Uzytkownik();
+			uzytkownikNowy.setTypKonta(0);
+			uzytkownikBeanSession.setUzytkownikZalogowany(uzytkownikNowy);
+			uzytkownikBeanSession.setInformacjaNaglowek("Witaj, goœæ");
+			}
+
+		System.err.println("Zalogowany: " + uzytkownikBeanSession.getUzytkownikZalogowany());
+		if (uzytkownikBeanSession.getUzytkownikZalogowany().getTypKonta() == 0) {
+			uzytkownikBeanSession.setInformacjaNaglowek("Witaj, goœæ");
+		} else if (uzytkownikBeanSession.getUzytkownikZalogowany().getTypKonta() == 1) {
+			uzytkownikBeanSession.setInformacjaNaglowek("Witaj u¿ytkowniku, " + uzytkownikBeanSession.getUzytkownikZalogowany().getImie());
+			uzytkownikBeanSession.setPanelNazwa("Panel U¿ytkownika");
+		} else if (uzytkownikBeanSession.getUzytkownikZalogowany().getTypKonta() == 2) {
+			uzytkownikBeanSession.setInformacjaNaglowek("Witaj moderatorze, " + uzytkownikBeanSession.getUzytkownikZalogowany().getImie());
+			uzytkownikBeanSession.setPanelNazwa("Panel Moderatora");
+		} else if (uzytkownikBeanSession.getUzytkownikZalogowany().getTypKonta() == 3) {
+			uzytkownikBeanSession.setInformacjaNaglowek("Witaj redaktorze, " + uzytkownikBeanSession.getUzytkownikZalogowany().getImie());
+		} else if (uzytkownikBeanSession.getUzytkownikZalogowany().getTypKonta() == 4) {
+			uzytkownikBeanSession.setInformacjaNaglowek("Witaj administratorze, " + uzytkownikBeanSession.getUzytkownikZalogowany().getImie());
+			uzytkownikBeanSession.setPanelNazwa("Panel Administratora");
 		}
-		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
-
-		if (uzytkownikSesji.getTypKonta() == 0) {
-			informacjaNaglowek = "Witaj, goœæ";
-		} else if (uzytkownikSesji.getTypKonta() == 1) {
-			informacjaNaglowek = "Witaj u¿ytkowniku, " + uzytkownikSesji.getImie();
-		} else if (uzytkownikSesji.getTypKonta() == 2) {
-			informacjaNaglowek = "Witaj moderatorze, " + uzytkownikSesji.getImie();
-		} else if (uzytkownikSesji.getTypKonta() == 3) {
-			informacjaNaglowek = "Witaj redaktorze, " + uzytkownikSesji.getImie();
-		} else if (uzytkownikSesji.getTypKonta() == 4) {
-			informacjaNaglowek = "Witaj administratorze, " + uzytkownikSesji.getImie();
-		}
-		poziomDostepu = uzytkownikSesji.getTypKonta();
-		czyZbanowany = uzytkownikSesji.getDataZbanowania();
+		
 	}
 
-	public String getInformacjaNaglowek() {
-		return informacjaNaglowek;
-	}
 
-	public String getZaloguj() {
-		System.err.println("Z log" + uzytkownikZFormLogowania);
+	public void zaloguj() {
 		if (getSprawdzCzyUzytkonikIstnieje(uzytkownikZFormLogowania.getLogin(), uzytkownikZFormLogowania.getHaslo())) {
-			FacesContext context = FacesContext.getCurrentInstance();
-			context.getExternalContext().getSessionMap().put("uzytkownikSesji",
-					getUzytkownik(uzytkownikZFormLogowania.getLogin(), uzytkownikZFormLogowania.getHaslo()));
-			System.err.println(
-					"Z bazy" + getUzytkownik(uzytkownikZFormLogowania.getLogin(), uzytkownikZFormLogowania.getHaslo()));
-			System.err.println("Z con" + context.getExternalContext().getSessionMap().get("uzytkownikSesji"));
-
-			return "Zalogowano";
+			uzytkownikBeanSession.setUzytkownikZalogowany(getUzytkownik(uzytkownikZFormLogowania.getLogin(), uzytkownikZFormLogowania.getHaslo()));
+			System.err.println("Zalogowano: " + uzytkownikBeanSession.getUzytkownikZalogowany());
+		}else{
+		System.err.println("Niezalgowano");
 		}
-		return "Nie Zalogowano";
-
 	}
 
 	public String getZarejestruj() {
@@ -96,9 +98,6 @@ public class UzytkownikController implements Serializable {
 
 	}
 
-	public void setInformacjaNaglowek(String informacjaNaglowek) {
-		this.informacjaNaglowek = informacjaNaglowek;
-	}
 
 	public Uzytkownik getUzytkownikZFormLogowania() {
 		return uzytkownikZFormLogowania;
@@ -184,10 +183,8 @@ public class UzytkownikController implements Serializable {
 	}
 
 	private String setUpdateUzytkownik(Uzytkownik pUzytkownik) {
-		Uzytkownik uzytkownikSesji = new Uzytkownik();
-		FacesContext context = FacesContext.getCurrentInstance();
-		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
-		int idUzytkownika = uzytkownikSesji.getId();
+
+		int idUzytkownika = uzytkownikBeanSession.getUzytkownikZalogowany().getId();
 
 		ResultSet rs = null;
 		PreparedStatement pst = null;
@@ -211,10 +208,8 @@ public class UzytkownikController implements Serializable {
 	}
 
 	private String setBan(Uzytkownik pUzytkownik) {
-		Uzytkownik uzytkownikSesji = new Uzytkownik();
-		FacesContext context = FacesContext.getCurrentInstance();
-		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
-		int idUzytkownika = uzytkownikSesji.getId();
+	
+		int idUzytkownika = uzytkownikBeanSession.getUzytkownikZalogowany().getId();
 
 		ResultSet rs = null;
 		PreparedStatement pst = null;
@@ -250,15 +245,6 @@ public class UzytkownikController implements Serializable {
 		this.uzytkownikZUpdate = uzytkownikZUpdate;
 	}
 
-	public int getPoziomDostepu() {
-		return poziomDostepu;
-
-	}
-
-	public void setPoziomDostepu(int poziomDostepu) {
-		this.poziomDostepu = poziomDostepu;
-	}
-
 	public Date getCzyZbanowany() {
 		return czyZbanowany;
 	}
@@ -266,5 +252,18 @@ public class UzytkownikController implements Serializable {
 	public void setCzyZbanowany(Date czyZbanowany) {
 		this.czyZbanowany = czyZbanowany;
 	}
+
+
+	public UzytkownikBean getUzytkownikBeanSession() {
+		return uzytkownikBeanSession;
+	}
+
+	public void setUzytkownikBeanSession(UzytkownikBean uzytkownikBeanSession) {
+		this.uzytkownikBeanSession = uzytkownikBeanSession;
+	}
+	
+	
+	
+	
 
 }

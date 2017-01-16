@@ -23,7 +23,7 @@ public class ReklamaBean implements Serializable {
 
 	public String getPobierzReklamy() {
 
-			System.err.println(" List<Komentarz> getKomentarze(");
+	
 			ResultSet rs = null;
 			PreparedStatement pst = null;
 			Connection con = getConnection();
@@ -47,7 +47,7 @@ public class ReklamaBean implements Serializable {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		System.err.println("aasd" + wybranaReklama);
+	//	System.err.println("wybrana reklama: " + wybranaReklama);
 		return "";
 	}
 
@@ -71,7 +71,7 @@ public class ReklamaBean implements Serializable {
 		String password = "";
 		try {
 			con = DriverManager.getConnection(url, user, password);
-			System.err.println("Connection Komentarz");
+		
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		} finally {

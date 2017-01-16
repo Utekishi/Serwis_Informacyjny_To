@@ -50,4 +50,12 @@ public class Komentarz {
 		this.artykulId = artykulId;
 	}
 
+	@Override
+	public String toString() {
+		return "Komentarz [id=" + id + ", tresc=" + tresc + ", autorLogin=" + autorLogin + ", artykulId=" + artykulId
+				+ ", dataUtworzenia=" + dataUtworzenia + "]";
+	}
+	
+	
+
 }

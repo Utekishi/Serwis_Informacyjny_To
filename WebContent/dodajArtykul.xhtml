@@ -70,8 +70,10 @@
 						<h:panelGroup>
 							<h:message id="m4" for="tresc" style="color:red" />
 						</h:panelGroup>
-						<h:commandButton action="odczytaneDaneDodanieArtykulu"
-							value="Zatwierdź"></h:commandButton>
+						<h:commandButton action="#{nawigacjaController.processOperacja}"
+								value="Dodaj artykuł">
+								<f:param name="operacja" value="dodajArtykul" />
+						</h:commandButton>
 					</h:form>
 				</div>
 			</div>

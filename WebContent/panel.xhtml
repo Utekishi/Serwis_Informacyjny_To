@@ -20,7 +20,7 @@
 					<div class="col-md-12">
 
 						<ui:fragment
-							rendered="#{uzytkownikController.poziomDostepu gt '0'}">
+							rendered="#{uzytkownikBean.uzytkownikZalogowany.typKonta gt '0'}">
 							<div class="asdasd">
 								#{uzytkownikBean.pobierzUzytkownika}
 								<h4>Twoje dane personalne:</h4>
@@ -85,7 +85,7 @@
 						<br></br>
 
 						<ui:fragment
-							rendered="#{uzytkownikController.poziomDostepu eq '3'}">
+							rendered="#{uzytkownikBean.uzytkownikZalogowany.typKonta eq '3'}">
 							<div class="asdasd">
 								<br>
 								<h4>Twoje artykuły:</h4>
@@ -127,7 +127,7 @@
 							</div>
 						</ui:fragment>
 						<ui:fragment
-							rendered="#{uzytkownikController.poziomDostepu eq '4'}">
+							rendered="#{uzytkownikBean.uzytkownikZalogowany.typKonta eq '4'}">
 							<div class="asdasd">
 								<br>
 								<h4>Zarządzaj reklamami:</h4>

@@ -1,17 +1,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"  >
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
  
     <ui:composition>
     #{reklamaBean.pobierzReklamy}
     
    <h:form>
         <ul class="nav nav-sidebar">
-            <li><h:commandLink action="#{nawigacjaController.processIndex}" value="Strona główna" /></li>
-            <li><h:commandLink action="#{nawigacjaController.processIndexWiadomosci}" value="Wiadomości" /></li>
-            <li><h:commandLink action="#{nawigacjaController.processIndexPolityka}" value="Polityka" /></li>
-            <br/>
-            
+            <li>
+            <h:commandLink
+					action="#{nawigacjaController.processOperacja}"
+					value="Strona główna">
+					<f:param name="operacja" value="wybierzKategorie" />
+					<f:param name="kategoriaId" value="0" />
+			</h:commandLink> 
+            </li>
+            <li>
+            <h:commandLink
+					action="#{nawigacjaController.processOperacja}"
+					value="Wiadomości">
+					<f:param name="operacja" value="wybierzKategorie" />
+					<f:param name="kategoriaId" value="1" />
+			</h:commandLink> 
+            </li>
+          
             <li><img src="#{reklamaBean.wybranaReklama.link}"></img></li>
         </ul>
     </h:form>

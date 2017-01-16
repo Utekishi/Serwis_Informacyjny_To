@@ -22,6 +22,9 @@ public class UzytkownikBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Uzytkownik uzytkownikPanelPokaz, uzytkownikPanelUstaw;
+	private Uzytkownik uzytkownikZalogowany= null;
+	public String informacjaNaglowek = "Brak sesji";
+	public String panelNazwa = "Brak panelu";
 
 	public List<Uzytkownik> getUzytkownicy() {
 		ResultSet rs = null;
@@ -56,10 +59,8 @@ public class UzytkownikBean implements Serializable {
 
 
 	public String getPobierzUzytkownika() {
-		Uzytkownik uzytkownikSesji = new Uzytkownik();
-		FacesContext context = FacesContext.getCurrentInstance();
-		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
-		int idUzytkownika = uzytkownikSesji.getId();
+	
+		int idUzytkownika = uzytkownikZalogowany.getId();
 		//if (context.getExternalContext().getSessionMap().containsKey("artykulAutora")) {
 
 			ResultSet rs = null;
@@ -102,7 +103,7 @@ public class UzytkownikBean implements Serializable {
 		String password = "";
 		try {
 			con = DriverManager.getConnection(url, user, password);
-			System.err.println("Connection Uzytkownik");
+		//	System.err.println("Connection Uzytkownik");
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		} finally {
@@ -125,4 +126,42 @@ public class UzytkownikBean implements Serializable {
 	public void setUzytkownikPanelUstaw(Uzytkownik uzytkownikPanelUstaw) {
 		this.uzytkownikPanelUstaw = uzytkownikPanelUstaw;
 	}
+
+
+
+	public Uzytkownik getUzytkownikZalogowany() {
+		return uzytkownikZalogowany;
+	}
+
+
+
+	public void setUzytkownikZalogowany(Uzytkownik uzytkownikZalogowany) {
+		this.uzytkownikZalogowany = uzytkownikZalogowany;
+	}
+
+
+
+	public String getInformacjaNaglowek() {
+		return informacjaNaglowek;
+	}
+
+
+
+	public void setInformacjaNaglowek(String informacjaNaglowek) {
+		this.informacjaNaglowek = informacjaNaglowek;
+	}
+
+
+
+	public String getPanelNazwa() {
+		return panelNazwa;
+	}
+
+
+
+	public void setPanelNazwa(String panelNazwa) {
+		this.panelNazwa = panelNazwa;
+	}
+	
+	
 }

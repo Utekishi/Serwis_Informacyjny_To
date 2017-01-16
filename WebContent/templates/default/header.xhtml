@@ -1,6 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	>
 
 <ui:composition>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -13,40 +15,49 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">Serwis informacyjny!</a>
-				<h:outputText value="#{uzytkownikController.informacjaNaglowek}"
+				<h:outputText value="#{uzytkownikBean.informacjaNaglowek}"
 					class="navbar-brand" />
 
 			</div>
 			<div class="navbar-collapse collapse">
 				<h:form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><h:commandLink
-								action="#{nawigacjaController.processPanel}"
-								value="Panel uzytkownika"
-								rendered="#{uzytkownikController.poziomDostepu eq '1'}" /></li>
-						<li><h:commandLink
-								action="#{nawigacjaController.processPanel}"
-								value="Panel redaktora"
-								rendered="#{uzytkownikController.poziomDostepu eq '3'}" /></li>
-						<li><h:commandLink
-								action="#{nawigacjaController.processPanel}"
-								value="Panel administratora"
-								rendered="#{uzytkownikController.poziomDostepu eq '4'}" /></li>
+						<li>
+						<h:commandLink
+								action="#{nawigacjaController.processOperacja}"
+								value="#{uzytkownikBean.panelNazwa}"
+								rendered="#{uzytkownikBean.uzytkownikZalogowany.typKonta gt '0'}" >
+								<f:param name="operacja" value="panelAdministracyjny" />
+						</h:commandLink> 
+						</li>					
 					</ul>
 				</h:form>
 				<h:form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><h:commandLink
-								action="#{nawigacjaController.processRejestracja}"
-								value="Rejestracja" /></li>
-						<li><h:commandLink
-								action="#{nawigacjaController.processLogowanie}"
+						<li>
+						<h:commandLink
+								action="#{nawigacjaController.processOperacja}"
+								value="Rejestracja"
+								rendered="#{uzytkownikBean.uzytkownikZalogowany.typKonta lt '1'}" >
+								<f:param name="operacja" value="rejestracja" />
+						</h:commandLink> 
+						</li>		
+						<li>
+						<h:commandLink
+								action="#{nawigacjaController.processOperacja}"
 								value="Logowanie"
-								rendered="#{uzytkownikController.poziomDostepu lt '1'}" /></li>
-						<li><h:commandLink
-								action="#{nawigacjaController.processWylogowanie}"
+								rendered="#{uzytkownikBean.uzytkownikZalogowany.typKonta lt '1'}" >
+								<f:param name="operacja" value="logowanie" />
+						</h:commandLink> 
+						</li>
+						<li>
+						<h:commandLink
+								action="#{nawigacjaController.processOperacja}"
 								value="Wylogowanie"
-								rendered="#{uzytkownikController.poziomDostepu gt '0'}" /></li>
+								rendered="#{uzytkownikBean.uzytkownikZalogowany.typKonta gt '0'}" >
+								<f:param name="operacja" value="wylogowanie" />
+						</h:commandLink> 
+						</li>
 					</ul>
 				</h:form>
 			</div>

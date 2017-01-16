@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14845081342290" configfile="/Serwis_Informacyjny_To/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="754" id="pf14845081757411" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf148450990963321 pf148450990963322 pf148450990963323 pf148450990963324 pf148451775578030 pf148451775578031" inlinks="pf148450990963321" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="logowanie.xhtml" id="pf148450990963326" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf148450990963322" path="/logowanie.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="rejestracja.xhtml" id="pf148450990963327" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf148450990963323" path="/rejestracja.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="testTechnologiczny.xhtml" id="pf148450990963328" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf148450990963324" path="/testTechnologiczny.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="artykul.xhtml" id="pf148451775578032" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf148451775578030" path="/artykul.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="dodajArtykul.xhtml" id="pf148451775578033" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf148451775578031" path="/dodajArtykul.xhtml"/>
-  <links id="pf148450990963321" target="pf14845081757411" source="pf14845081757411" outcome="index" fromaction="#{nawigacjaController.processIndex}"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="1906" id="pf14845081757411" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf148450990963321 pf148450990963322 pf148450990963323 pf148450990963324 pf148451775578030 pf148451775578031 pf14845865771200 pf14845865771201 pf14845865771202 pf14845865771203 pf14845865771204 pf14845865771205" inlinks="pf148450990963321" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="logowanie.xhtml" x="338" y="178" id="pf148450990963326" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf148450990963322" path="/logowanie.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="rejestracja.xhtml" x="338" y="562" id="pf148450990963327" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf148450990963323" path="/rejestracja.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="testTechnologiczny.xhtml" x="338" y="946" id="pf148450990963328" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf148450990963324" path="/testTechnologiczny.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="artykul.xhtml" x="338" y="1330" id="pf148451775578032" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf148451775578030" path="/artykul.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="dodajArtykul.xhtml" x="338" y="1714" id="pf148451775578033" referenceLink="//@navigationRule.0/@navigationCase.6/@toViewId|" inlinks="pf148451775578031 pf14845865771205" path="/dodajArtykul.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="panel.xhtml" x="338" y="2098" id="pf14845865771266" referenceLink="//@navigationRule.0/@navigationCase.6/@toViewId|" inlinks="pf14845865771200" path="/panel.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="edycjaArtykulu.xhtml" x="338" y="2482" id="pf14845865771267" referenceLink="//@navigationRule.0/@navigationCase.7/@toViewId|" inlinks="pf14845865771201" path="/edycjaArtykulu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="indexPolityka.xhtml" x="338" y="2866" id="pf14845865771268" referenceLink="//@navigationRule.0/@navigationCase.8/@toViewId|" inlinks="pf14845865771202" path="/indexPolityka.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="indexWiadomosci.xhtml" x="338" y="3250" id="pf14845865771269" referenceLink="//@navigationRule.0/@navigationCase.9/@toViewId|" inlinks="pf14845865771203" path="/indexWiadomosci.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="edycjaReklam.xhtml" x="338" y="3634" id="pf148458657712710" referenceLink="//@navigationRule.0/@navigationCase.10/@toViewId|" inlinks="pf14845865771204" path="/edycjaReklam.xhtml"/>
   <links id="pf148450990963322" target="pf148450990963326" source="pf14845081757411" outcome="logowanie" fromaction="#{nawigacjaController.processLogowanie}"/>
   <links id="pf148450990963323" target="pf148450990963327" source="pf14845081757411" outcome="rejestracja" fromaction="#{nawigacjaController.processRejestracja}"/>
   <links id="pf148450990963324" target="pf148450990963328" source="pf14845081757411" outcome="testTechnologiczny" fromaction="#{nawigacjaController.processTestTechnologiczny}"/>
   <links id="pf148451775578030" target="pf148451775578032" source="pf14845081757411" outcome="artykul" fromaction="#{nawigacjaController.processArtykul}"/>
   <links id="pf148451775578031" target="pf148451775578033" source="pf14845081757411" outcome="nowyArtykul" fromaction="#{nawigacjaController.processNowyArtykul}"/>
+  <links id="pf14845865771200" target="pf14845865771266" source="pf14845081757411" outcome="panel" fromaction="#{nawigacjaController.moveToPanel}"/>
+  <links id="pf14845865771201" target="pf14845865771267" source="pf14845081757411" outcome="edycjaArtykulu" fromaction="#{nawigacjaController.moveToEdycjaArtykulu}"/>
+  <links id="pf14845865771202" target="pf14845865771268" source="pf14845081757411" outcome="indexPolityka" fromaction="#{nawigacjaController.moveToIndexPolityka}"/>
+  <links id="pf14845865771203" target="pf14845865771269" source="pf14845081757411" outcome="indexWiadomosci" fromaction="#{nawigacjaController.moveToIndexWiadomosci}"/>
+  <links id="pf14845865771204" target="pf148458657712710" source="pf14845081757411" outcome="edycjaReklam" fromaction="#{nawigacjaController.moveToEdycjaReklam}"/>
+  <links id="pf148450990963321" target="pf14845081757411" source="pf14845081757411" outcome="index" fromaction="#{nawigacjaController.processIndex}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf14845865771205" target="pf148451775578033" source="pf14845081757411" outcome="nowyArtykul" fromaction="#{nawigacjaController.processNowyArtykul}"/>
 </pageflow:Pageflow>

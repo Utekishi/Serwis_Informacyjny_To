@@ -18,13 +18,16 @@
 
 				<div class="col-md-12">
 					<dl>
-						<ui:repeat value="#{artykulBean.artykuly}" var="artykuly">
+						<ui:repeat value="#{artykulBean.wybraneArtykuly}" var="artykuly">
 							<div class="asdasd">
 								<h:form>
-									<h3><h:commandLink action="#{nawigacjaController.processArtykul}"
- 										value="#{artykuly.tytul}"> 
- 										<f:param name="artykulId" value="${artykuly.id}" />
-          							</h:commandLink></h3>
+									<h3>
+										<h:commandLink action="#{nawigacjaController.processOperacja}"
+											value="${artykuly.tytul}">
+											<f:param name="operacja" value="wybierzArtykul" />
+											<f:param name="artykulId" value="${artykuly.id}" />
+										</h:commandLink>
+									</h3>
 								</h:form>
 								<br /> <img src="#{artykuly.obrazek}" /> <br />
 								<dt>
@@ -47,6 +50,12 @@
 				</div>
 			</div>
 
+			<h:commandButton action="#{nawigacjaController.processOperacja}"
+					value="tokototk" > 
+				 <f:param name="operacja" value="logowanie?faces-redirect=true" />
+			</h:commandButton> 
+					
+					
 		</ui:define>
 	</ui:composition>
 

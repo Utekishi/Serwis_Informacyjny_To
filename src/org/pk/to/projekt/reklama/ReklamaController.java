@@ -7,11 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import org.pk.to.projekt.artykul.Artykul;
 import org.pk.to.projekt.uzytkownik.Uzytkownik;
+import org.pk.to.projekt.uzytkownik.UzytkownikBean;
 
 @ManagedBean(name = "reklamaController", eager = true)
 @RequestScoped
@@ -23,14 +25,17 @@ public class ReklamaController implements Serializable {
 	public int idArtykulu = -1;
 	public Reklama reklamaZFormNowego = new Reklama();
 
+	@ManagedProperty("#{uzytkownikBean}")
+	private UzytkownikBean uzytkownikBeanSession;
+
 	public ReklamaController() {
-		Uzytkownik uzytkownikSesji = new Uzytkownik();
+		
 		Artykul artykulSesji = new Artykul();
 		FacesContext context = FacesContext.getCurrentInstance();
-		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
+	
 		 int wybranyArtykulId = (int) context.getExternalContext().getSessionMap().get("wybranyArtykulId");
-		idUzytkownika = uzytkownikSesji.getId();
-		System.err.println("artykulSesji.getId()"+wybranyArtykulId);
+		idUzytkownika = uzytkownikBeanSession.getUzytkownikZalogowany().getId();
+	
 		idArtykulu = wybranyArtykulId;
 	}
 
@@ -67,5 +72,15 @@ public class ReklamaController implements Serializable {
 	public void setReklamaZFormNowego(Reklama reklamaZFormNowego) {
 		this.reklamaZFormNowego = reklamaZFormNowego;
 	}
+
+	public UzytkownikBean getUzytkownikBeanSession() {
+		return uzytkownikBeanSession;
+	}
+
+	public void setUzytkownikBeanSession(UzytkownikBean uzytkownikBeanSession) {
+		this.uzytkownikBeanSession = uzytkownikBeanSession;
+	}
+	
+	
 
 }

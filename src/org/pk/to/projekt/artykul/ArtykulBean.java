@@ -24,177 +24,15 @@ public class ArtykulBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Artykul wybranyArtykul, artykulAutora;
-
-
-	public List<Artykul> getArtykuly() {
-		System.err.println(" List<Artykul> getArtykuly(");
-		ResultSet rs = null;
-		PreparedStatement pst = null;
-		Connection con = getConnection();
-		String stm = "Select * from artykul";
-		List<Artykul> records = new ArrayList<Artykul>();
-		try {
-			pst = con.prepareStatement(stm);
-			pst.execute();
-			rs = pst.getResultSet();
-
-			while (rs.next()) {
-				Artykul artykul = new Artykul();
-				artykul.setId(rs.getInt(1));
-				artykul.setAutor(rs.getString(2));
-				artykul.setTytul(rs.getString(3));
-				artykul.setTresc(rs.getString(4));
-				artykul.setStatus_artykulu(rs.getInt(5));
-				artykul.setKategoria(rs.getInt(6));
-				artykul.setObrazek(rs.getString(7));
-				artykul.setData_publikacji(rs.getDate(8));
-				records.add(artykul);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		System.err.println("records: " + records);
-		return records;
-	}
+	private List<Artykul> wybraneArtykuly; 
+	private List<Artykul> artykulyAutora; 
+	private FacesContext context = FacesContext.getCurrentInstance();
+	int kategoriaId=0;
+		
+	@ManagedProperty("#{uzytkownikBean}")
+	private UzytkownikBean uzytkownikBeanSession;
 	
-	public List<Artykul> getArtykulyWiadomosci() {
-		System.err.println(" List<Artykul> getArtykuly(");
-		ResultSet rs = null;
-		PreparedStatement pst = null;
-		Connection con = getConnection();
-		String stm = "Select * from artykul WHERE kategoria = 0";
-		List<Artykul> records = new ArrayList<Artykul>();
-		try {
-			pst = con.prepareStatement(stm);
-			pst.execute();
-			rs = pst.getResultSet();
 
-			while (rs.next()) {
-				Artykul artykul = new Artykul();
-				artykul.setId(rs.getInt(1));
-				artykul.setAutor(rs.getString(2));
-				artykul.setTytul(rs.getString(3));
-				artykul.setTresc(rs.getString(4));
-				artykul.setStatus_artykulu(rs.getInt(5));
-				artykul.setKategoria(rs.getInt(6));
-				artykul.setObrazek(rs.getString(7));
-				artykul.setData_publikacji(rs.getDate(8));
-				records.add(artykul);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		System.err.println("records: " + records);
-		return records;
-	}
-	
-	public List<Artykul> getArtykulyPolityka() {
-		System.err.println(" List<Artykul> getArtykuly(");
-		ResultSet rs = null;
-		PreparedStatement pst = null;
-		Connection con = getConnection();
-		String stm = "Select * from artykul WHERE kategoria = 1";
-		List<Artykul> records = new ArrayList<Artykul>();
-		try {
-			pst = con.prepareStatement(stm);
-			pst.execute();
-			rs = pst.getResultSet();
-
-			while (rs.next()) {
-				Artykul artykul = new Artykul();
-				artykul.setId(rs.getInt(1));
-				artykul.setAutor(rs.getString(2));
-				artykul.setTytul(rs.getString(3));
-				artykul.setTresc(rs.getString(4));
-				artykul.setStatus_artykulu(rs.getInt(5));
-				artykul.setKategoria(rs.getInt(6));
-				artykul.setObrazek(rs.getString(7));
-				artykul.setData_publikacji(rs.getDate(8));
-				records.add(artykul);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		System.err.println("records: " + records);
-		return records;
-	}
-
-	public String getPobierzArtykul() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		if (context.getExternalContext().getSessionMap().containsKey("wybranyArtykulId")) {
-
-			ResultSet rs = null;
-			PreparedStatement pst = null;
-			Connection con = UzytkownikBean.getConnection();
-			String stm = "Select * from artykul where id = ? ";
-			int artykulId = (int) context.getExternalContext().getSessionMap().get("wybranyArtykulId");
-			try {
-				pst = con.prepareStatement(stm);
-				pst.setInt(1, artykulId);
-				pst.execute();
-				rs = pst.getResultSet();
-				Artykul artykul = new Artykul();
-				if (rs.next()) {
-					artykul.setId(rs.getInt(1));
-					artykul.setAutor(rs.getString(2));
-					artykul.setTytul(rs.getString(3));
-					artykul.setTresc(rs.getString(4));
-					artykul.setStatus_artykulu(rs.getInt(5));
-					artykul.setKategoria(rs.getInt(6));
-					artykul.setObrazek(rs.getString(7));
-					artykul.setData_publikacji(rs.getDate(8));
-				}
-				wybranyArtykul = artykul;
-
-				return "";
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return "Niepobrano";
-
-	}
-	
-	public String getPobierzArtykulAutora() {
-		Uzytkownik uzytkownikSesji = new Uzytkownik();
-		FacesContext context = FacesContext.getCurrentInstance();
-		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
-		int idUzytkownika = uzytkownikSesji.getId();
-		//if (context.getExternalContext().getSessionMap().containsKey("artykulAutora")) {
-
-			ResultSet rs = null;
-			PreparedStatement pst = null;
-			Connection con = UzytkownikBean.getConnection();
-			String stm = "Select * from artykul where Autor = ? ";
-			int autor = idUzytkownika;
-			try {
-				pst = con.prepareStatement(stm);
-				pst.setInt(1, autor);
-				pst.execute();
-				rs = pst.getResultSet();
-				Artykul artykul = new Artykul();
-				if (rs.next()) {
-					artykul.setId(rs.getInt(1));
-					artykul.setAutor(rs.getString(2));
-					artykul.setTytul(rs.getString(3));
-					artykul.setTresc(rs.getString(4));
-					artykul.setStatus_artykulu(rs.getInt(5));
-					artykul.setKategoria(rs.getInt(6));
-					artykul.setObrazek(rs.getString(7));
-					artykul.setData_publikacji(rs.getDate(8));
-				}
-				artykulAutora = artykul;
-
-				//return "";
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		//}
-
-		return "";
-
-	}
 
 	public static Connection getConnection() {
 		Connection con = null;
@@ -208,7 +46,7 @@ public class ArtykulBean implements Serializable {
 		String password = "";
 		try {
 			con = DriverManager.getConnection(url, user, password);
-			System.err.println("Connection Artykul");
+		//	System.err.println("Connection Artykul");
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		} finally {
@@ -231,5 +69,32 @@ public class ArtykulBean implements Serializable {
 	public void setArtykulAutora(Artykul artykulAutora) {
 		this.artykulAutora = artykulAutora;
 	}
+
+	public List<Artykul> getWybraneArtykuly() {
+		return wybraneArtykuly;
+	}
+
+	public void setWybraneArtykuly(List<Artykul> wybraneArtykuly) {
+		this.wybraneArtykuly = wybraneArtykuly;
+	}
+
+	public UzytkownikBean getUzytkownikBeanSession() {
+		return uzytkownikBeanSession;
+	}
+
+	public void setUzytkownikBeanSession(UzytkownikBean uzytkownikBeanSession) {
+		this.uzytkownikBeanSession = uzytkownikBeanSession;
+	}
+
+	public List<Artykul> getArtykulyAutora() {
+		return artykulyAutora;
+	}
+
+	public void setArtykulyAutora(List<Artykul> artykulyAutora) {
+		this.artykulyAutora = artykulyAutora;
+	}
+	
+	
+	
 
 }

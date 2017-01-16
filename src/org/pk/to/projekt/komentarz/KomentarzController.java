@@ -14,7 +14,9 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import org.pk.to.projekt.artykul.Artykul;
+import org.pk.to.projekt.artykul.ArtykulBean;
 import org.pk.to.projekt.uzytkownik.Uzytkownik;
+import org.pk.to.projekt.uzytkownik.UzytkownikBean;
 
 @ManagedBean(name = "komentarzController", eager = true)
 @RequestScoped
@@ -22,26 +24,25 @@ public class KomentarzController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public String loginUzytkownika = "";
-	public int idArtykulu = -1;
+	
+	
 	public Komentarz komentarzZFormNowego = new Komentarz();
 
-	public KomentarzController() {
-		Uzytkownik uzytkownikSesji = new Uzytkownik();
-		Artykul artykulSesji = new Artykul();
-		FacesContext context = FacesContext.getCurrentInstance();
-		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
-		 int wybranyArtykulId = (int) context.getExternalContext().getSessionMap().get("wybranyArtykulId");
-		loginUzytkownika = uzytkownikSesji.getLogin();
-		System.err.println("artykulSesji.getId()"+wybranyArtykulId);
-		idArtykulu = wybranyArtykulId;
-	}
+	@ManagedProperty("#{uzytkownikBean}")
+	private UzytkownikBean uzytkownikBeanSession;
+	
+	@ManagedProperty("#{komentarzBean}")
+	private KomentarzBean komentarzBeanSession;
 
+	@ManagedProperty("#{artykulBean}")
+	private ArtykulBean artykulBeanSession;
+	
 	public String getZapiszKomentarz() {
 		return setKomentarz(komentarzZFormNowego);
 	}
 
 	private String setKomentarz(Komentarz pKomentarz) {
+		System.err.println("Dodaj komentarz: " +pKomentarz);
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		Connection con = KomentarzBean.getConnection();
@@ -50,9 +51,8 @@ public class KomentarzController implements Serializable {
 		try {
 			pst = con.prepareStatement(stm);
 			pst.setString(1, pKomentarz.getTresc());
-			pst.setString(2, loginUzytkownika);
-			pst.setInt(3, idArtykulu);
-			pst.setDate(4, pKomentarz.getDataUtworzenia());
+			pst.setString(2, uzytkownikBeanSession.getUzytkownikZalogowany().getImie()+" ("+ uzytkownikBeanSession.getUzytkownikZalogowany().getLogin()+") "+uzytkownikBeanSession.getUzytkownikZalogowany().getNazwisko());
+			pst.setInt(3, artykulBeanSession.getWybranyArtykul().getId());
 			pst.execute();
 
 		} catch (SQLException e) {
@@ -63,6 +63,41 @@ public class KomentarzController implements Serializable {
 		wynik = "";
 		return wynik;
 	}
+	
+	public void pobierzKomentarze(int artykulId) {
+		List<Komentarz> records = new ArrayList<Komentarz>();
+
+		FacesContext context = FacesContext.getCurrentInstance();
+	
+
+					ResultSet rs = null;
+			PreparedStatement pst = null;
+			Connection con = KomentarzBean.getConnection();
+			String stm = "Select * from komentarze where Artykul_Id = ? ";
+
+			try {
+				pst = con.prepareStatement(stm);
+				pst.setInt(1, artykulId);
+				pst.execute();
+				rs = pst.getResultSet();
+
+				while (rs.next()) {
+					Komentarz komentarz = new Komentarz();
+					komentarz.setId(rs.getInt(1));
+					komentarz.setTresc(rs.getString(2));
+					komentarz.setAutorLogin(rs.getString(3));
+					komentarz.setArtykulId(rs.getInt(4));
+					komentarz.setDataUtworzenia(rs.getDate(5));
+
+					records.add(komentarz);
+				}
+				komentarzBeanSession.setWybraneKomentarze(records);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+	
+	}
 
 	public Komentarz getKomentarzZFormNowego() {
 		return komentarzZFormNowego;
@@ -71,5 +106,34 @@ public class KomentarzController implements Serializable {
 	public void setKomentarzZFormNowego(Komentarz komentarzZFormNowego) {
 		this.komentarzZFormNowego = komentarzZFormNowego;
 	}
+
+	public UzytkownikBean getUzytkownikBeanSession() {
+		return uzytkownikBeanSession;
+	}
+
+	public void setUzytkownikBeanSession(UzytkownikBean uzytkownikBeanSession) {
+		this.uzytkownikBeanSession = uzytkownikBeanSession;
+	}
+
+	public KomentarzBean getKomentarzBeanSession() {
+		return komentarzBeanSession;
+	}
+
+	public void setKomentarzBeanSession(KomentarzBean komentarzBeanSession) {
+		this.komentarzBeanSession = komentarzBeanSession;
+	}
+
+	public ArtykulBean getArtykulBeanSession() {
+		return artykulBeanSession;
+	}
+
+	public void setArtykulBeanSession(ArtykulBean artykulBeanSession) {
+		this.artykulBeanSession = artykulBeanSession;
+	}
+
+
+	
+	
+	
 
 }
