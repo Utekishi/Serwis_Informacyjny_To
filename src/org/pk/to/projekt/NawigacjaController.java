@@ -53,6 +53,7 @@ public class NawigacjaController implements Serializable {
 	public String processArtykul() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().put("wybranyArtykulId", artykulId);
+	//	context.getExternalContext().getSessionMap().put("artykulSesji", artykulId);
 		return "artykul";
 	}
 
@@ -99,6 +100,14 @@ public class NawigacjaController implements Serializable {
 
 	public String processIndexPolityka() {
 		return "indexPolityka";
+	}
+	
+	public String moveToEdycjaReklam() {
+		return "edycjaReklam";
+	}
+
+	public String processEdycjaReklam() {
+		return "edycjaReklam";
 	}
 
 	// Geters/Seters

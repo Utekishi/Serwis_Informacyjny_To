@@ -18,24 +18,19 @@ import javax.faces.context.FacesContext;
 public class ReklamaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	private Reklama wybranaReklama;
 
-	public List<Reklama> getReklamy() {
-		List<Reklama> records = new ArrayList<Reklama>();
-
-		FacesContext context = FacesContext.getCurrentInstance();
-		if (context.getExternalContext().getSessionMap().containsKey("wybranyArtykulId")) {
-
-			int artykulId = (int) context.getExternalContext().getSessionMap().get("wybranyArtykulId");
+	public String getPobierzReklamy() {
 
 			System.err.println(" List<Komentarz> getKomentarze(");
 			ResultSet rs = null;
 			PreparedStatement pst = null;
 			Connection con = getConnection();
-			String stm = "Select * from reklamy";
+			String stm = "Select * from reklamy;";
 
 			try {
 				pst = con.prepareStatement(stm);
-				pst.setInt(1, artykulId);
 				pst.execute();
 				rs = pst.getResultSet();
 
@@ -44,19 +39,27 @@ public class ReklamaBean implements Serializable {
 					reklama.setId(rs.getInt(1));
 					reklama.setData_dodania(rs.getDate(2));
 					reklama.setDostawca(rs.getString(3));
-					reklama.setLink(rs.getString(3));
-					reklama.setKoszt(rs.getInt(4));
+					reklama.setLink(rs.getString(4));
+					reklama.setKoszt(rs.getInt(5));
 
-					records.add(reklama);
+					wybranaReklama = reklama;
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
-		return records;
+		System.err.println("aasd" + wybranaReklama);
+		return "";
 	}
 
-	public Connection getConnection() {
+	public Reklama getWybranaReklama() {
+		return wybranaReklama;
+	}
+
+	public void setWybranaReklama(Reklama wybranaReklama) {
+		this.wybranaReklama = wybranaReklama;
+	}
+
+	public static Connection getConnection() {
 		Connection con = null;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");

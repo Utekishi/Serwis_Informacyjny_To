@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Komentarz {
 	private int id;
 	private String tresc;
-	private int autorId;
+	private String autorLogin;
 	private int artykulId;
 
 	Date dataUtworzenia;
@@ -34,12 +34,12 @@ public class Komentarz {
 		this.dataUtworzenia = dataUtworzenia;
 	}
 
-	public int getAutorId() {
-		return autorId;
+	public String getAutorLogin() {
+		return autorLogin;
 	}
 
-	public void setAutorId(int autorId) {
-		this.autorId = autorId;
+	public void setAutorLogin(String autorLogin) {
+		this.autorLogin = autorLogin;
 	}
 
 	public int getArtykulId() {

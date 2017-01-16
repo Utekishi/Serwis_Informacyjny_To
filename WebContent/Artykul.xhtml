@@ -15,6 +15,8 @@
 	<ui:composition template="/templates/default/main.xhtml">
 		<ui:define name="content">
 		#{artykulBean.pobierzArtykul}
+		#{uzytkownikBean.pobierzUzytkownika}
+		
 		
 			<div class="container-fluid">
 
@@ -51,11 +53,20 @@
 					</thead>
 					<ui:repeat value="#{komentarzBean.komentarze}" var="komentarze">
 						<tbody>
+
 							<tr class="active">
 								<td><h:outputText value="${komentarze.tresc}"
 										escape="false" /></td>
-								<td><h:outputText value="${komentarze.autorId}" /></td>
+								<td><h:outputText value="${komentarze.autorLogin}" /></td>
 								<td><h:outputText value="${komentarze.dataUtworzenia}" /></td>
+								<ui:fragment
+									rendered="#{uzytkownikController.poziomDostepu gt '1'}">
+									<td><h:form>
+											<td><h:commandButton
+													action="odczytaneDaneZbanowano?faces-redirect=true"
+													value="Banuj uzytkownika"></h:commandButton></td>
+										</h:form></td>
+								</ui:fragment>
 							</tr>
 						</tbody>
 
@@ -63,10 +74,10 @@
 				</table>
 				<ui:fragment rendered="#{uzytkownikController.poziomDostepu gt '0'}">
 					<h:form>
-							<h:inputText
-								value="#{komentarzController.komentarzZFormNowego.tresc}"
-								id="tresc" required="true"
-								requiredMessage="Podanie treści jest niezbędne">
+						<h:inputText style="display:block;width:1000px;height:250px"
+							value="#{komentarzController.komentarzZFormNowego.tresc}"
+							id="tresc" required="true"
+							requiredMessage="Podanie treści jest niezbędne">
  ...
  					    </h:inputText>
 						<h:commandButton action="odczytaneDaneNowyKomentarz"

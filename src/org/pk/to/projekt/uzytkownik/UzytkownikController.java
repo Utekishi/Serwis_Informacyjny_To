@@ -2,6 +2,7 @@ package org.pk.to.projekt.uzytkownik;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -21,9 +21,11 @@ public class UzytkownikController implements Serializable {
 
 	public String informacjaNaglowek = "Brak sesji";
 	public int poziomDostepu = -1;
+	public Date czyZbanowany = null;
 	public Uzytkownik uzytkownikZFormLogowania = new Uzytkownik();
 	public Uzytkownik uzytkownikZFormRejestrowania = new Uzytkownik();
 	public Uzytkownik uzytkownikZUpdate = new Uzytkownik();
+	public Uzytkownik uzytkownikBan = new Uzytkownik();
 
 	public UzytkownikController() {
 		Uzytkownik uzytkownikSesji = new Uzytkownik();
@@ -48,6 +50,7 @@ public class UzytkownikController implements Serializable {
 			informacjaNaglowek = "Witaj administratorze, " + uzytkownikSesji.getImie();
 		}
 		poziomDostepu = uzytkownikSesji.getTypKonta();
+		czyZbanowany = uzytkownikSesji.getDataZbanowania();
 	}
 
 	public String getInformacjaNaglowek() {
@@ -72,11 +75,24 @@ public class UzytkownikController implements Serializable {
 
 	public String getZarejestruj() {
 		return setUzytkownik(uzytkownikZFormRejestrowania);
+		
 	}
-	
+
+	public Uzytkownik getUzytkownikBan() {
+		return uzytkownikBan;
+	}
+
+	public void setUzytkownikBan(Uzytkownik uzytkownikBan) {
+		this.uzytkownikBan = uzytkownikBan;
+	}
 
 	public String getUpdatePanel() {
 		return setUpdateUzytkownik(uzytkownikZUpdate);
+
+	}
+
+	public String getBanuj() {
+		return setBan(uzytkownikBan);
 
 	}
 
@@ -194,6 +210,30 @@ public class UzytkownikController implements Serializable {
 		return wynik;
 	}
 
+	private String setBan(Uzytkownik pUzytkownik) {
+		Uzytkownik uzytkownikSesji = new Uzytkownik();
+		FacesContext context = FacesContext.getCurrentInstance();
+		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
+		int idUzytkownika = uzytkownikSesji.getId();
+
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = UzytkownikBean.getConnection();
+		String stm = "UPDATE Uzytkownik SET Data_Zbanowania = NOW() WHERE Id = ?;";
+		String wynik;
+		try {
+			pst = con.prepareStatement(stm);
+			pst.setInt(1, idUzytkownika);
+			pst.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			wynik = "Blad podczas dodawania do bazy danych";
+		}
+		wynik = "";
+		return wynik;
+	}
+
 	public Uzytkownik getUzytkownikZFormRejestrowania() {
 		return uzytkownikZFormRejestrowania;
 	}
@@ -201,7 +241,7 @@ public class UzytkownikController implements Serializable {
 	public void setUzytkownikZFormRejestrowania(Uzytkownik uzytkownikZFormRejestrowania) {
 		this.uzytkownikZFormRejestrowania = uzytkownikZFormRejestrowania;
 	}
-	
+
 	public Uzytkownik getUzytkownikZUpdate() {
 		return uzytkownikZUpdate;
 	}
@@ -217,6 +257,14 @@ public class UzytkownikController implements Serializable {
 
 	public void setPoziomDostepu(int poziomDostepu) {
 		this.poziomDostepu = poziomDostepu;
+	}
+
+	public Date getCzyZbanowany() {
+		return czyZbanowany;
+	}
+
+	public void setCzyZbanowany(Date czyZbanowany) {
+		this.czyZbanowany = czyZbanowany;
 	}
 
 }

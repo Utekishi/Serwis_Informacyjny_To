@@ -3,14 +3,16 @@
       xmlns:h="http://java.sun.com/jsf/html"  >
  
     <ui:composition>
+    #{reklamaBean.pobierzReklamy}
+    
    <h:form>
         <ul class="nav nav-sidebar">
             <li><h:commandLink action="#{nawigacjaController.processIndex}" value="Strona główna" /></li>
             <li><h:commandLink action="#{nawigacjaController.processIndexWiadomosci}" value="Wiadomości" /></li>
             <li><h:commandLink action="#{nawigacjaController.processIndexPolityka}" value="Polityka" /></li>
             <br/>
-            #{reklamaBean.reklamy}
-            <li><img src="#{reklamy.link}"></img></li>
+            
+            <li><img src="#{reklamaBean.wybranaReklama.link}"></img></li>
         </ul>
     </h:form>
 

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Artykul {
 	private int id;
-	private int autor;
+	private String autor;
 	private String tytul;
 	private String tresc = "";
 	private int status_artykulu;
@@ -20,11 +20,11 @@ public class Artykul {
 		this.id = id;
 	}
 
-	public int getAutor() {
+	public String getAutor() {
 		return autor;
 	}
 
-	public void setAutor(int autor) {
+	public void setAutor(String autor) {
 		this.autor = autor;
 	}
 

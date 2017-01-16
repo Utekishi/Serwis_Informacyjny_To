@@ -14,7 +14,7 @@
 <h:body>
 	<ui:composition template="/templates/default/main.xhtml">
 		<ui:define name="content">
-#{reklamaBean.reklamy}
+#{reklamaBean.pobierzReklamy}
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
@@ -141,16 +141,22 @@
 											<th>Data ustawienia</th>
 										</tr>
 									</thead>
-									#{reklamaBean.reklamy}
 									<tbody>
 										<tr class="active">
-											<td><h:outputText value="#{reklamy.dostawca}" /></td>
-											<td><h:outputText value="#{reklamy.link}" /></td>
-											<td><h:outputText value="#{reklamy.koszt}" /> zł</td>
-											<td><h:outputText value="#{reklamy.data_dodania}" /></td>
-											<td><h:commandButton
-													action="#{nawigacjaController.processEdycjaArtykulu}"
-													value="Edytuj"></h:commandButton></td>
+											<td><h:outputText
+													value="#{reklamaBean.wybranaReklama.dostawca}" /></td>
+											<td><h:outputText
+													value="#{reklamaBean.wybranaReklama.link}" /></td>
+											<td><h:outputText
+													value="#{reklamaBean.wybranaReklama.koszt}" /> zł</td>
+											<td><h:outputText
+													value="#{reklamaBean.wybranaReklama.data_dodania}" /></td>
+											<td><h:form>
+													<h:commandButton
+															action="edycjaReklam?faces-redirect=true"
+															value="Edytuj"></h:commandButton>
+												</h:form>
+												</td>
 										</tr>
 
 									</tbody>

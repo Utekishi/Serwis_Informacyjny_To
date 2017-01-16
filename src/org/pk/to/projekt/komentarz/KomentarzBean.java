@@ -43,9 +43,9 @@ public class KomentarzBean implements Serializable {
 					Komentarz komentarz = new Komentarz();
 					komentarz.setId(rs.getInt(1));
 					komentarz.setTresc(rs.getString(2));
-					komentarz.setAutorId(rs.getInt(3));
-					komentarz.setArtykulId(rs.getInt(3));
-					komentarz.setDataUtworzenia(rs.getDate(4));
+					komentarz.setAutorLogin(rs.getString(3));
+					komentarz.setArtykulId(rs.getInt(4));
+					komentarz.setDataUtworzenia(rs.getDate(5));
 
 					records.add(komentarz);
 				}

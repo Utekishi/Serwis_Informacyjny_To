@@ -19,58 +19,50 @@
 				<div class="col-md-12">
 					<h:form class="form-horizontal">
 						<div class="form-group">
-							<h3>Dodawanie artykułu:</h3>
+							<h3>Edycja reklam:</h3>
 							
 							
-							<label class="col-sm-2 control-label"> Tytuł </label>
+							<label class="col-sm-2 control-label"> Dostawca: </label>
 							<div class="col-sm-10">
 								<h:inputText class="form-control"
-									value="#{artykulController.artykulZFormNowego.tytul}"
-									id="tytul" required="true"
-									requiredMessage="Podanie tytułu jest niezbędne" />
+									value="#{reklamaController.reklamaZFormNowego.dostawca}"
+									id="dostawca" required="true"
+									requiredMessage="Podanie dostawcy jest niezbędne" />
 							</div>
 							<h:panelGroup>
-								<h:message id="m1" for="tytul" style="color:red" />
+								<h:message id="m1" for="dostawca" style="color:red" />
 							</h:panelGroup>
 						</div>
 
 						<div class="form-group">
 
-							<label class="col-sm-2 control-label"> Obrazek (link) </label>
+							<label class="col-sm-2 control-label"> Link: </label>
 							<div class="col-sm-10">
 								<h:inputText class="form-control"
-									value="#{artykulController.artykulZFormNowego.obrazek}"
-									id="obrazek" required="true"
+									value="#{reklamaController.reklamaZFormNowego.link}"
+									id="link" required="true"
 									requiredMessage="Podanie linku do obrazka jest niezbędne" />
 							</div>
 							<h:panelGroup>
-								<h:message id="m2" for="obrazek" style="color:red" />
+								<h:message id="m2" for="link" style="color:red" />
 							</h:panelGroup>
 						</div>
 						
 						<div class="form-group">
 
-							<label class="col-sm-2 control-label"> Kategoria </label>
+							<label class="col-sm-2 control-label"> Koszt: </label>
 							<div class="col-sm-10">
 								<h:inputText class="form-control"
-									value="#{artykulController.artykulZFormNowego.kategoria}"
-									id="kategoria" required="true"
-									requiredMessage="Podanie kategorii jest niezbędne" />
+									value="#{reklamaController.reklamaZFormNowego.koszt}"
+									id="koszt" required="true"
+									requiredMessage="Podanie ksoztu an tydzień jest niezbędne" />
 							</div>
 							<h:panelGroup>
-								<h:message id="m3" for="kategoria" style="color:red" />
+								<h:message id="m3" for="koszt" style="color:red" />
 							</h:panelGroup>
 						</div>
-						<h4>Treść</h4>
-						<h:inputText style="width:1000px;height:250px"
-							value="#{artykulController.artykulZFormNowego.tresc}" id="tresc"
-							required="true" requiredMessage="Podanie treści jest niezbędne">
- ...
- 					    </h:inputText>
-						<h:panelGroup>
-							<h:message id="m4" for="tresc" style="color:red" />
-						</h:panelGroup>
-						<h:commandButton action="odczytaneDaneDodanieArtykulu"
+					
+						<h:commandButton action="odczytaneDaneEdycjaReklam"
 							value="Zatwierdź"></h:commandButton>
 					</h:form>
 				</div>

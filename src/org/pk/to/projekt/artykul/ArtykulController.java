@@ -22,14 +22,14 @@ public class ArtykulController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-	public int idUzytkownika = -1;
+	public String loginUzytkownika = "";
 	public Artykul artykulZFormNowego = new Artykul();
 
 	public ArtykulController() {
 		Uzytkownik uzytkownikSesji = new Uzytkownik();
 		FacesContext context = FacesContext.getCurrentInstance();
 		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
-		idUzytkownika = uzytkownikSesji.getId();
+		loginUzytkownika = uzytkownikSesji.getLogin();
 	}
 
 	public String getZapisz() {
@@ -44,7 +44,7 @@ public class ArtykulController implements Serializable {
 	    String stm = "INSERT INTO Artykul(Autor, Tytul, Tresc, Status_artykulu, Kategoria, Obrazek, Data_Publikacji) VALUES(?, ?, ?, 1, ?, ?, NOW());";
 	    try {   
 	        pst = con.prepareStatement(stm);
-	        pst.setInt(1,idUzytkownika);
+	        pst.setString(1,loginUzytkownika);
 	        pst.setString(2,pArtykul.getTytul());
 	        pst.setString(3,pArtykul.getTresc());
 	        pst.setInt(4,pArtykul.getKategoria());

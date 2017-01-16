@@ -41,7 +41,7 @@ public class ArtykulBean implements Serializable {
 			while (rs.next()) {
 				Artykul artykul = new Artykul();
 				artykul.setId(rs.getInt(1));
-				artykul.setAutor(rs.getInt(2));
+				artykul.setAutor(rs.getString(2));
 				artykul.setTytul(rs.getString(3));
 				artykul.setTresc(rs.getString(4));
 				artykul.setStatus_artykulu(rs.getInt(5));
@@ -72,7 +72,7 @@ public class ArtykulBean implements Serializable {
 			while (rs.next()) {
 				Artykul artykul = new Artykul();
 				artykul.setId(rs.getInt(1));
-				artykul.setAutor(rs.getInt(2));
+				artykul.setAutor(rs.getString(2));
 				artykul.setTytul(rs.getString(3));
 				artykul.setTresc(rs.getString(4));
 				artykul.setStatus_artykulu(rs.getInt(5));
@@ -103,7 +103,7 @@ public class ArtykulBean implements Serializable {
 			while (rs.next()) {
 				Artykul artykul = new Artykul();
 				artykul.setId(rs.getInt(1));
-				artykul.setAutor(rs.getInt(2));
+				artykul.setAutor(rs.getString(2));
 				artykul.setTytul(rs.getString(3));
 				artykul.setTresc(rs.getString(4));
 				artykul.setStatus_artykulu(rs.getInt(5));
@@ -136,7 +136,7 @@ public class ArtykulBean implements Serializable {
 				Artykul artykul = new Artykul();
 				if (rs.next()) {
 					artykul.setId(rs.getInt(1));
-					artykul.setAutor(rs.getInt(2));
+					artykul.setAutor(rs.getString(2));
 					artykul.setTytul(rs.getString(3));
 					artykul.setTresc(rs.getString(4));
 					artykul.setStatus_artykulu(rs.getInt(5));
@@ -176,7 +176,7 @@ public class ArtykulBean implements Serializable {
 				Artykul artykul = new Artykul();
 				if (rs.next()) {
 					artykul.setId(rs.getInt(1));
-					artykul.setAutor(rs.getInt(2));
+					artykul.setAutor(rs.getString(2));
 					artykul.setTytul(rs.getString(3));
 					artykul.setTresc(rs.getString(4));
 					artykul.setStatus_artykulu(rs.getInt(5));

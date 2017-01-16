@@ -1,58 +1,54 @@
-package org.pk.to.projekt.komentarz;
+package org.pk.to.projekt.reklama;
 
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import org.pk.to.projekt.artykul.Artykul;
 import org.pk.to.projekt.uzytkownik.Uzytkownik;
 
-@ManagedBean(name = "komentarzController", eager = true)
+@ManagedBean(name = "reklamaController", eager = true)
 @RequestScoped
-public class KomentarzController implements Serializable {
+public class ReklamaController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public String loginUzytkownika = "";
+	public int idUzytkownika = -1;
 	public int idArtykulu = -1;
-	public Komentarz komentarzZFormNowego = new Komentarz();
+	public Reklama reklamaZFormNowego = new Reklama();
 
-	public KomentarzController() {
+	public ReklamaController() {
 		Uzytkownik uzytkownikSesji = new Uzytkownik();
 		Artykul artykulSesji = new Artykul();
 		FacesContext context = FacesContext.getCurrentInstance();
 		uzytkownikSesji = (Uzytkownik) context.getExternalContext().getSessionMap().get("uzytkownikSesji");
 		 int wybranyArtykulId = (int) context.getExternalContext().getSessionMap().get("wybranyArtykulId");
-		loginUzytkownika = uzytkownikSesji.getLogin();
+		idUzytkownika = uzytkownikSesji.getId();
 		System.err.println("artykulSesji.getId()"+wybranyArtykulId);
 		idArtykulu = wybranyArtykulId;
 	}
 
-	public String getZapiszKomentarz() {
-		return setKomentarz(komentarzZFormNowego);
+	public String getZapiszReklama() {
+		return setReklama(reklamaZFormNowego);
 	}
 
-	private String setKomentarz(Komentarz pKomentarz) {
+	private String setReklama(Reklama pReklama) {
 		ResultSet rs = null;
 		PreparedStatement pst = null;
-		Connection con = KomentarzBean.getConnection();
+		Connection con = ReklamaBean.getConnection();
 		String wynik;
-		String stm = "INSERT INTO Komentarze(Tresc, Autor_Login, Artykul_Id, Data_Utworzenia) VALUES(?, ?, ?, NOW());";
+		String stm = "UPDATE Reklamy SET Data_Dodania = NOW(), Dostawca = ?, Link = ?, Koszt = ? WHERE Id = 1;";
 		try {
 			pst = con.prepareStatement(stm);
-			pst.setString(1, pKomentarz.getTresc());
-			pst.setString(2, loginUzytkownika);
-			pst.setInt(3, idArtykulu);
-			pst.setDate(4, pKomentarz.getDataUtworzenia());
+			pst.setString(1, pReklama.getDostawca());
+			pst.setString(2, pReklama.getLink());
+			pst.setInt(3, pReklama.getKoszt());
 			pst.execute();
 
 		} catch (SQLException e) {
@@ -64,12 +60,12 @@ public class KomentarzController implements Serializable {
 		return wynik;
 	}
 
-	public Komentarz getKomentarzZFormNowego() {
-		return komentarzZFormNowego;
+	public Reklama getReklamaZFormNowego() {
+		return reklamaZFormNowego;
 	}
 
-	public void setKomentarzZFormNowego(Komentarz komentarzZFormNowego) {
-		this.komentarzZFormNowego = komentarzZFormNowego;
+	public void setReklamaZFormNowego(Reklama reklamaZFormNowego) {
+		this.reklamaZFormNowego = reklamaZFormNowego;
 	}
 
 }

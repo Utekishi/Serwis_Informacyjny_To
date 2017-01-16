@@ -51,6 +51,11 @@
     NAME="output9" PATH="/indexWiadomosci.xhtml"
     TARGET="rules:#indexWiadomosci.xhtml"
     TITLE="#{nawigacjaController.moveToIndexWiadomosci}:indexWiadomosci" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="edycjaReklam:#{nawigacjaController.moveToEdycjaReklam}:#edycjaReklam.xhtml"
+    NAME="output10" PATH="/edycjaReklam.xhtml"
+    TARGET="rules:#edycjaReklam.xhtml"
+    TITLE="#{nawigacjaController.moveToEdycjaReklam}:edycjaReklam" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#logowanie.xhtml" PATH="/logowanie.xhtml"
@@ -71,4 +76,6 @@
   PATH="/indexWiadomosci.xhtml" SHAPE="304,993,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#indexPolityka.xhtml"
   PATH="/indexPolityka.xhtml" SHAPE="304,433,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#edycjaReklam.xhtml"
+  PATH="/edycjaReklam.xhtml" SHAPE="304,465,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
